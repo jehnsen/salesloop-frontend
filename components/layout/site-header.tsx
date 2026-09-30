@@ -48,19 +48,19 @@ export function SiteHeader() {
   const linkClass = (active: boolean) =>
     cn(
       "rounded-full px-3 py-2 text-sm font-medium transition-colors",
-      active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+      active ? "bg-primary-soft text-primary" : "text-muted-foreground hover:bg-muted hover:text-foreground",
     );
 
   return (
     <header
       className={cn(
         "sticky top-0 z-40 border-b transition-[background-color,box-shadow,border-color] duration-200",
-        scrolled ? "border-border bg-background/90 shadow-soft backdrop-blur-md" : "border-transparent bg-background",
+        scrolled ? "border-border bg-background/95 shadow-soft backdrop-blur-md" : "border-border/70 bg-background",
       )}
     >
-      <Container className="flex h-16 items-center gap-4">
+      <Container className="flex h-20 items-center gap-3">
         <Logo />
-        <nav aria-label="Main" className="ml-6 hidden items-center gap-0.5 lg:flex">
+        <nav aria-label="Main" className="ml-auto hidden items-center gap-0.5 lg:flex">
           {NAV.slice(0, 2).map((item) => (
             <Link key={item.href} href={item.href} className={linkClass(isActive(pathname, item.href))} aria-current={isActive(pathname, item.href) ? "page" : undefined}>
               {item.label}
@@ -89,7 +89,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="outline" size="sm" asChild className="hidden md:inline-flex">
+          <Button variant="outline" size="sm" asChild className="hidden xl:inline-flex">
             <Link href="/order-inquiry">
               <ClipboardList aria-hidden /> Order inquiry
             </Link>

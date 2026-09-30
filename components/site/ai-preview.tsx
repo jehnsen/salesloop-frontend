@@ -48,13 +48,13 @@ export function AIPreview() {
   const reply: ChatMessage = { id: `a${active}`, role: "assistant", message: example.answer, timestamp: stamp };
 
   return (
-    <div className="grid items-center gap-10 lg:grid-cols-2">
+    <div className="grid items-center gap-10 rounded-3xl border bg-surface/70 p-5 sm:p-10 lg:grid-cols-2 lg:gap-14 lg:p-12">
       <div className="space-y-6">
-        <p className="text-xs font-semibold tracking-[0.14em] text-leaf uppercase">AI Sales Assistant</p>
-        <h2 className="font-display text-3xl font-medium tracking-tight text-balance sm:text-4xl">
-          Questions at 11 PM? Our assistant is awake.
+        <p className="inline-flex items-center gap-2 text-[10px] font-semibold tracking-[0.18em] text-leaf uppercase"><Sparkles className="size-4" aria-hidden /> Your personal product guide</p>
+        <h2 className="font-display text-3xl font-normal tracking-tight text-balance sm:text-4xl">
+          A thoughtful answer.<br /><span className="text-primary italic">Whenever you need one.</span>
         </h2>
-        <p className="text-lg text-pretty text-muted-foreground">
+        <p className="text-base leading-relaxed text-pretty text-muted-foreground">
           Ask in English, Filipino, or Taglish. The assistant answers using the seller&apos;s approved product
           information, helps you compare, and prepares your order inquiry. The seller confirms everything personally.
         </p>
@@ -79,7 +79,7 @@ export function AIPreview() {
         </Button>
       </div>
 
-      <div className="rounded-3xl border bg-gradient-to-br from-cream via-card to-primary-soft/60 p-3 shadow-lift sm:p-5">
+      <div className="min-w-0 rounded-3xl border bg-primary-soft p-2 shadow-lift sm:p-3">
         <div className="overflow-hidden rounded-2xl border bg-background">
           <div className="flex items-center gap-3 border-b bg-card px-4 py-3">
             <AIAvatar />

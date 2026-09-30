@@ -12,32 +12,32 @@ import { ProductImage } from "./product-image";
 export function ProductCard({ product, className, priority }: { product: Product; className?: string; priority?: boolean }) {
   const category = categories.find((c) => c.slug === product.category);
   return (
-    <article className={cn("group flex flex-col overflow-hidden rounded-2xl border bg-card shadow-soft transition-shadow hover:shadow-lift", className)}>
-      <Link href={`/products/${product.slug}`} className="relative block" tabIndex={-1} aria-hidden>
+    <article className={cn("group flex flex-col overflow-hidden rounded-2xl border border-border/80 bg-card p-2 shadow-soft transition-[box-shadow,border-color] duration-300 hover:border-primary/25 hover:shadow-lift", className)}>
+      <Link href={`/products/${product.slug}`} className="relative block overflow-hidden rounded-xl" tabIndex={-1} aria-hidden>
         <ProductImage
           visual={product.visual}
           tone={product.tone}
           name={product.name}
           priority={priority}
-          className="transition-transform duration-500 group-hover:scale-[1.03]"
+          className="aspect-[6/5] transition-transform duration-500 group-hover:scale-[1.03]"
         />
         {product.isBestSeller && (
-          <span className="absolute top-3 left-3 rounded-full bg-card/90 px-2.5 py-1 text-[11px] font-semibold text-coffee shadow-sm backdrop-blur">
+          <span className="absolute top-3 left-3 rounded-full border border-white/30 bg-forest px-3 py-1.5 text-[10px] font-medium tracking-wide text-white shadow-sm">
             Best seller
           </span>
         )}
       </Link>
-      <div className="flex flex-1 flex-col gap-3 p-4">
+      <div className="flex flex-1 flex-col gap-4 p-3 pt-5 sm:p-4">
         <div className="space-y-1">
-          <p className="text-xs font-medium tracking-wide text-leaf uppercase">{category?.shortName}</p>
-          <h3 className="leading-snug font-semibold">
+          <p className="mb-2 text-[10px] font-semibold tracking-[0.16em] text-leaf uppercase">{category?.shortName}</p>
+          <h3 className="font-display text-xl leading-snug font-medium">
             <Link href={`/products/${product.slug}`} className="hover:text-primary focus-visible:underline">
               {product.name}
             </Link>
           </h3>
           <p className="line-clamp-2 text-sm text-muted-foreground">{product.summary}</p>
         </div>
-        <div className="mt-auto flex items-center justify-between gap-2">
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-border/70 pt-4">
           <div>
             <p className="text-lg font-semibold tracking-tight">{formatPeso(product.price)}</p>
             <p className="text-[11px] text-muted-foreground">Reference price</p>

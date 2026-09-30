@@ -18,15 +18,15 @@ export function CategoryCard({
   return (
     <Link
       href={`/categories/${category.slug}`}
-      className={cn("group relative flex flex-col overflow-hidden rounded-2xl border bg-card shadow-soft transition-shadow hover:shadow-lift", className)}
+      className={cn("group relative flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card transition-[box-shadow,border-color] duration-300 hover:border-primary/25 hover:shadow-lift", className)}
     >
-      <ProductImage visual={category.visual} tone={category.tone} name={category.shortName} angle={1} className="aspect-[5/4]" />
-      <div className="flex items-start justify-between gap-3 p-4">
+      <div className="overflow-hidden"><ProductImage visual={category.visual} tone={category.tone} name={category.shortName} angle={1} className="aspect-[5/4] transition-transform duration-500 group-hover:scale-105" /></div>
+      <div className="flex flex-1 items-start justify-between gap-3 p-5">
         <div>
-          <h3 className="font-display text-lg font-medium">{title ?? category.name}</h3>
-          <p className="text-sm text-muted-foreground">{description ?? category.description}</p>
+          <h3 className="font-display text-xl font-medium">{title ?? category.name}</h3>
+          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{description ?? category.description}</p>
         </div>
-        <ArrowUpRight className="mt-1 size-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" aria-hidden />
+        <span className="flex size-8 shrink-0 items-center justify-center rounded-full border text-primary transition-colors group-hover:border-primary group-hover:bg-primary group-hover:text-white"><ArrowUpRight className="size-4" aria-hidden /></span>
       </div>
     </Link>
   );
@@ -68,10 +68,10 @@ export function BlogCover({ post, className }: { post: BlogPost; className?: str
 
 export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <figure className="flex h-full flex-col gap-4 rounded-2xl border bg-card p-6 shadow-soft">
-      <Quote className="size-6 text-clay" aria-hidden />
+    <figure className="flex h-full flex-col gap-4 rounded-2xl border border-border/70 bg-card p-6 shadow-soft">
+      <Quote className="size-8 text-primary/40" strokeWidth={1.3} aria-hidden />
       <blockquote className="flex-1 text-[15px] leading-relaxed text-pretty">“{testimonial.quote}”</blockquote>
-      <figcaption className="text-sm">
+      <figcaption className="border-t pt-4 text-sm">
         <span className="font-semibold">{testimonial.name}</span>
         <span className="text-muted-foreground"> · {testimonial.location}</span>
       </figcaption>

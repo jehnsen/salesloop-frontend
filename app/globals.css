@@ -4,27 +4,27 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design tokens. Warm neutral surfaces with forest green, coffee, cream and clay accents.
+ * Botanical boutique palette: evergreen, warm ivory, sage, and antique gold.
  * Components use semantic names (primary, muted, coffee…) and never raw hex values.
  */
 :root {
-  --radius: 0.875rem;
+  --radius: 1rem;
 
-  --background: #fcfbf8;
-  --foreground: #1d2a21;
+  --background: #faf9f5;
+  --foreground: #172e28;
   --card: #ffffff;
   --card-foreground: #1d2a21;
   --popover: #ffffff;
   --popover-foreground: #1d2a21;
 
-  --primary: #2e5b3a;
+  --primary: #174d3c;
   --primary-foreground: #ffffff;
-  --primary-soft: #e6efe7;
+  --primary-soft: #e6eee6;
 
-  --secondary: #f1ebe0;
+  --secondary: #eee8db;
   --secondary-foreground: #3b2f24;
-  --muted: #f4f1ea;
-  --muted-foreground: #62665d;
+  --muted: #f0f1eb;
+  --muted-foreground: #626c63;
   --accent: #eef3ec;
   --accent-foreground: #24472d;
 
@@ -38,18 +38,22 @@
   --info-soft: #e6eff7;
   --danger-soft: #f9e6e2;
 
-  --border: #e8e3d9;
-  --input: #dcd5c8;
-  --ring: #2e5b3a;
+  --border: #e0e5db;
+  --input: #cdd6c9;
+  --ring: #37705a;
 
   /* Brand accents for product visuals */
-  --coffee: #6b4a35;
+  --coffee: #654735;
   --coffee-soft: #efe4da;
-  --cream: #f5ecdc;
+  --cream: #f2ead9;
   --clay: #c07a52;
-  --sage: #9db49a;
-  --leaf: #5e8c4f;
-  --forest: #2e5b3a;
+  --sage: #bdcdb0;
+  --leaf: #477348;
+  --forest: #123b2e;
+  --gold: #d7bd80;
+  --gold-foreground: #35402a;
+  --gold-soft: #f3ebd7;
+  --surface: #f0f3ed;
 
   /* Chart palette: validated for adjacent-series colour-vision separation on white. */
   --chart-1: #2f7d4f;
@@ -60,11 +64,11 @@
   --chart-axis: #7a7d73;
 
   /* Admin chrome */
-  --sidebar: #16261b;
+  --sidebar: #102e25;
   --sidebar-foreground: #d7e0d8;
-  --sidebar-muted: #8fa393;
-  --sidebar-accent: #223a29;
-  --sidebar-primary: #b9dfc2;
+  --sidebar-muted: #a2b6aa;
+  --sidebar-accent: #234c3d;
+  --sidebar-primary: #d7bd80;
 }
 
 @theme inline {
@@ -102,6 +106,10 @@
   --color-sage: var(--sage);
   --color-leaf: var(--leaf);
   --color-forest: var(--forest);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-gold-soft: var(--gold-soft);
+  --color-surface: var(--surface);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -121,8 +129,8 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 10px);
 
-  --shadow-soft: 0 1px 2px rgb(29 42 33 / 0.04), 0 4px 16px -4px rgb(29 42 33 / 0.08);
-  --shadow-lift: 0 2px 4px rgb(29 42 33 / 0.05), 0 12px 32px -8px rgb(29 42 33 / 0.14);
+  --shadow-soft: 0 2px 4px rgb(18 59 46 / 0.02), 0 8px 28px -12px rgb(18 59 46 / 0.1);
+  --shadow-lift: 0 4px 8px rgb(18 59 46 / 0.04), 0 20px 48px -12px rgb(18 59 46 / 0.18);
 
   --animate-typing: typing 1.2s infinite ease-in-out;
   --animate-fade-up: fade-up 0.35s ease-out both;
@@ -149,6 +157,10 @@
     @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "cv11", "ss01";
   }
+  ::selection {
+    background: var(--sage);
+    color: var(--forest);
+  }
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-ring;
   }
@@ -162,6 +174,34 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+@layer components {
+  .botanical-hero {
+    background: radial-gradient(ellipse at 85% 20%, rgb(189 205 176 / 0.12), transparent 55%), var(--forest);
+  }
+  .hero-studio {
+    background: radial-gradient(ellipse at 50% 28%, #f6efdf 0%, #e3ddcc 55%, #c4cbb8 100%);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.4), 0 24px 64px rgb(0 0 0 / 0.14);
+  }
+  .hero-studio::before {
+    content: "";
+    position: absolute;
+    inset: 7%;
+    border: 1px solid rgb(23 77 60 / 0.15);
+    border-radius: 48% 48% 8px 8px;
+    pointer-events: none;
+  }
+  .site-footer {
+    --foreground: #f4f2e9;
+    --muted-foreground: #b9c8bd;
+    --border: #345146;
+    --primary: #d7bd80;
+    --primary-foreground: #123b2e;
+    --card: #234c3d;
+    color: var(--foreground);
+    background: var(--forest);
   }
 }
 

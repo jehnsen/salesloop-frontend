@@ -33,8 +33,8 @@ export function SectionHeader({
       )}
     >
       <div className={cn("max-w-2xl space-y-2", align === "center" && "mx-auto")}>
-        {eyebrow && <p className="text-xs font-semibold tracking-[0.14em] text-leaf uppercase">{eyebrow}</p>}
-        <Heading className="font-display text-3xl font-medium tracking-tight text-balance sm:text-4xl">{title}</Heading>
+        {eyebrow && <p className="mb-3 text-[10px] font-semibold tracking-[0.2em] text-leaf uppercase sm:text-xs">{eyebrow}</p>}
+        <Heading className="font-display text-3xl leading-tight font-normal tracking-[-0.035em] text-balance sm:text-[2.65rem]">{title}</Heading>
         {description && <p className="text-base text-pretty text-muted-foreground sm:text-lg">{description}</p>}
       </div>
       {action && <div className="shrink-0">{action}</div>}
@@ -80,11 +80,11 @@ export function PageHero({
   className?: string;
 }) {
   return (
-    <section className={cn("border-b bg-gradient-to-b from-cream/60 to-background", className)}>
-      <Container className="py-12 sm:py-16">
+    <section className={cn("border-b bg-surface", className)}>
+      <Container className="py-14 sm:py-20">
         <div className="max-w-3xl space-y-3">
           {eyebrow && <p className="text-xs font-semibold tracking-[0.14em] text-leaf uppercase">{eyebrow}</p>}
-          <h1 className="font-display text-4xl font-medium tracking-tight text-balance sm:text-5xl">{title}</h1>
+          <h1 className="font-display text-4xl font-normal tracking-[-0.035em] text-balance sm:text-6xl">{title}</h1>
           {description && <p className="text-lg text-pretty text-muted-foreground">{description}</p>}
           {children}
         </div>

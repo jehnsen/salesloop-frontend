@@ -2,7 +2,7 @@
 
 Frontend for an independent DXN reseller, **Luntian Wellness**: a product-discovery storefront with an AI sales assistant, plus a seller CRM ("SalesLoop" admin) for leads, conversations, follow-ups, orders, and marketing.
 
-There is no backend yet. Everything runs on realistic Philippine mock data behind a service layer built to be swapped for a Node.js/PostgreSQL API.
+There is no backend yet. Everything runs on realistic Philippine mock data behind a service layer built to be swapped for a Node.js/PostgreSQL API.match the 
 
 ## Getting started
 

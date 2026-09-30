@@ -55,7 +55,7 @@ export function ChatWidget() {
         aria-label={isOpen ? "Close AI assistant" : "Open AI assistant"}
         aria-expanded={isOpen}
         className={cn(
-          "fixed right-4 bottom-4 z-40 flex items-center gap-2 rounded-full bg-primary py-3 pr-5 pl-4 text-sm font-medium text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5 md:right-6 md:bottom-6",
+          "fixed right-4 bottom-4 z-40 flex items-center gap-2 rounded-full border border-white/20 bg-primary py-3 pr-5 pl-4 text-sm font-medium text-primary-foreground shadow-lift ring-4 ring-background/80 transition-transform hover:-translate-y-0.5 md:right-6 md:bottom-6",
           isOpen && "hidden md:flex md:pr-4",
         )}
       >

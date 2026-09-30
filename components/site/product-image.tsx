@@ -1,3 +1,4 @@
+import { useId } from "react";
 import type { ProductTone, ProductVisual } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -138,6 +139,7 @@ export function ProductImage({
   angle = 0,
   className,
   priority,
+  transparent = false,
 }: {
   visual: ProductVisual;
   tone: ProductTone;
@@ -146,18 +148,22 @@ export function ProductImage({
   angle?: 0 | 1 | 2;
   className?: string;
   priority?: boolean;
+  /** Let editorial product arrangements use their own studio backdrop. */
+  transparent?: boolean;
 }) {
+  const id = useId().replace(/:/g, "");
   const c = TONES[tone];
   const words = name
     .split(/[\s(]/)
     .filter((w) => w && !/^\d/.test(w))
     .map((w) => w.toUpperCase());
   const transform = angle === 2 ? "translate(-50 -40) scale(1.5)" : angle === 1 ? "translate(12 6) scale(0.92)" : undefined;
-  const gradientId = `bg-${tone}-${visual}-${angle}`;
+  const gradientId = `bg-${id}`;
+  const lightId = `light-${id}`;
   return (
     <div
       role="img"
-      aria-label={`${name} product photo`}
+      aria-label={`${name} product illustration`}
       data-priority={priority || undefined}
       className={cn("relative aspect-square w-full overflow-hidden", className)}
     >
@@ -168,18 +174,28 @@ export function ProductImage({
             <stop offset="45%" stopColor={c.bg} />
             <stop offset="100%" stopColor={c.bg2} />
           </radialGradient>
+          <linearGradient id={lightId} x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0.22" />
+            <stop offset="45%" stopColor="#fff" stopOpacity="0" />
+            <stop offset="100%" stopColor="#000" stopOpacity="0.12" />
+          </linearGradient>
         </defs>
-        <rect width="200" height="200" fill={`url(#${gradientId})`} />
+        {!transparent && <rect width="200" height="200" fill={`url(#${gradientId})`} />}
+        <ellipse cx="102" cy="177" rx="77" ry="12" fill={c.bg2} />
+        <path d="M25 172v5c0 7 35 12 77 12s77-5 77-12v-5" fill={c.bg2} />
+        <ellipse cx="102" cy="172" rx="77" ry="12" fill={c.bg} />
         {angle === 1 && (
           <g opacity="0.55">
             <path d="M20 170c10-30 30-40 40-38-4 14-20 30-40 38Z" fill={c.pack} opacity="0.35" />
             <path d="M24 150c14-18 30-22 36-20-6 10-20 18-36 20Z" fill={c.pack} opacity="0.25" />
-            <circle cx="36" cy="60" r="16" fill="#ffffff" opacity="0.5" />
+            <path d="M168 113c-12-34-5-64 13-78 11 31 4 58-13 78Z" fill={c.packDark} opacity="0.3" />
+            <path d="M173 112c4-25 15-41 27-44-1 23-10 37-27 44Z" fill={c.packDark} opacity="0.2" />
           </g>
         )}
         <ellipse cx="100" cy="168" rx="62" ry="7" fill="#000" opacity="0.08" />
         <g transform={transform}>
           <Pack visual={visual} c={c} words={words} />
+          {(visual === "coffee" || visual === "tea") && <rect x="55" y="48" width="90" height="112" rx="8" fill={`url(#${lightId})`} />}
         </g>
       </svg>
     </div>

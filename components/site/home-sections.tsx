@@ -1,15 +1,18 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  ArrowUpRight,
   ClipboardList,
   HandHeart,
   Info,
+  Leaf,
   MapPin,
   MessageCircleQuestion,
   PackageCheck,
   Repeat,
   Search,
   ShieldCheck,
+  Sparkles,
   Truck,
   Zap,
 } from "lucide-react";
@@ -21,76 +24,92 @@ import { Container, SectionHeader } from "@/components/layout/page-primitives";
 import { BlogCard, CategoryCard, TestimonialCard } from "./cards";
 import { ProductGrid } from "./product-card";
 import { ProductImage } from "./product-image";
+import { formatPeso } from "@/lib/utils";
 
 export function HomeHero({ featured }: { featured: Product[] }) {
-  const [a, b, c] = featured;
+  const [a] = featured;
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-cream/70 via-background to-background" aria-hidden />
-      <Container className="grid items-center gap-12 py-12 sm:py-16 lg:grid-cols-[1.05fr_1fr] lg:py-20">
-        <div className="space-y-7">
-          <p className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-xs font-medium text-muted-foreground shadow-soft">
-            <span className="size-1.5 rounded-full bg-leaf" aria-hidden /> Independent reseller · Metro Manila, Rizal & Bulacan
+    <section className="botanical-hero relative overflow-hidden text-primary-foreground">
+      <Container className="grid items-center gap-12 py-12 sm:py-16 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <div className="relative z-10 animate-fade-up">
+          <p className="mb-7 inline-flex items-center gap-2.5 text-[10px] font-medium tracking-[0.22em] text-sage uppercase sm:text-xs">
+            <span className="h-px w-7 bg-gold" aria-hidden /> Small rituals. Everyday wellness.
           </p>
-          <h1 className="font-display text-[2.6rem] leading-[1.05] font-medium tracking-tight text-balance sm:text-6xl">
-            Everyday Wellness Products, Made Easier to Discover
+          <h1 className="max-w-xl font-display text-[clamp(2.9rem,5.5vw,5.2rem)] leading-[1.04] font-normal tracking-[-0.045em]">
+            A little care.<br />
+            A better <span className="font-light text-gold italic">everyday.</span>
           </h1>
-          <p className="max-w-xl text-lg text-pretty text-muted-foreground">
-            Explore coffee, beverages, and personal-care favorites. Have a question? Our AI assistant answers anytime,
-            and your order is always confirmed personally by the seller.
+          <p className="mt-7 max-w-md text-base leading-relaxed text-white/75 sm:text-lg">
+            From your first cup of coffee to your daily essentials, discover DXN favorites that fit naturally into your routine.
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" asChild>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button size="lg" variant="gold" asChild>
               <Link href="/products">
-                Explore Products <ArrowRight aria-hidden />
+                Discover the collection <ArrowUpRight aria-hidden />
               </Link>
             </Button>
-            <AskAIButton size="lg" variant="outline">
-              Ask Our AI Assistant
+            <AskAIButton size="lg" variant="outline" className="border-white/25 bg-transparent text-white hover:border-white/50 hover:bg-white/10">
+              Find my favorites
             </AskAIButton>
           </div>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-            <li className="flex items-center gap-1.5"><ShieldCheck className="size-4 text-leaf" aria-hidden /> Seller-confirmed orders</li>
-            <li className="flex items-center gap-1.5"><Truck className="size-4 text-leaf" aria-hidden /> Local delivery</li>
-            <li className="flex items-center gap-1.5"><Repeat className="size-4 text-leaf" aria-hidden /> Easy reorders</li>
-          </ul>
+          <div className="mt-10 flex items-center gap-3 border-t border-white/15 pt-6">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-sage/30 text-sage"><HandHeart className="size-5" strokeWidth={1.5} aria-hidden /></span>
+            <div className="text-xs leading-relaxed">
+              <p className="font-medium text-white">Thoughtfully chosen. Personally assisted.</p>
+              <p className="mt-0.5 text-white/65">Independent reseller · Metro Manila, Rizal & Bulacan</p>
+            </div>
+          </div>
         </div>
 
-        {a && b && c && (
-          <div
-            className="relative mx-auto grid h-[340px] w-full max-w-lg grid-cols-5 grid-rows-5 gap-3 sm:h-[460px] sm:gap-4"
-            aria-label="Featured products"
-          >
-            <Link href={`/products/${a.slug}`} className="col-span-3 row-span-5 overflow-hidden rounded-3xl shadow-lift">
-              <ProductImage visual={a.visual} tone={a.tone} name={a.name} angle={1} className="aspect-auto h-full" priority />
+        {a && (
+          <div className="relative mx-auto w-full max-w-lg pb-5" aria-label="Featured collection">
+            <Link href={`/products/${a.slug}`} className="hero-studio group relative block overflow-hidden rounded-t-[46%] rounded-b-3xl text-forest">
+              <div className="relative z-10 pt-10 text-center sm:pt-12">
+                <Leaf className="mx-auto mb-2 size-5" strokeWidth={1.3} aria-hidden />
+                <p className="text-[10px] font-medium tracking-[0.24em] uppercase">The everyday collection</p>
+                <p className="mt-2 font-display text-2xl italic sm:text-3xl">Your moment of calm.</p>
+              </div>
+              <ProductImage visual={a.visual} tone={a.tone} name={a.name} angle={1} className="mx-auto -mt-2 w-[85%] max-w-[320px] bg-transparent [&_svg]:transition-transform [&_svg]:duration-700 group-hover:[&_svg]:scale-105" transparent priority />
+              <div className="relative z-10 mx-6 mb-6 flex items-center justify-between gap-3 rounded-2xl border border-white/60 bg-white/70 p-4 backdrop-blur-sm sm:mx-8">
+                <div>
+                  <p className="text-[10px] tracking-[0.12em] text-coffee uppercase">A daily favorite</p>
+                  <p className="mt-1 text-sm font-semibold">{a.name}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{formatPeso(a.price)} · Reference price</p>
+                </div>
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-forest text-white"><ArrowUpRight className="size-5" aria-hidden /></span>
+              </div>
             </Link>
-            <Link href={`/products/${b.slug}`} className="col-span-2 row-span-3 overflow-hidden rounded-3xl shadow-soft">
-              <ProductImage visual={b.visual} tone={b.tone} name={b.name} className="aspect-auto h-full" />
-            </Link>
-            <Link href={`/products/${c.slug}`} className="col-span-2 row-span-2 overflow-hidden rounded-3xl shadow-soft">
-              <ProductImage visual={c.visual} tone={c.tone} name={c.name} angle={2} className="aspect-auto h-full" />
-            </Link>
-            <div className="absolute -bottom-5 -left-2 max-w-[250px] animate-fade-up rounded-2xl border bg-card p-3 shadow-lift sm:-left-8">
-              <p className="text-xs text-muted-foreground">Customer asked</p>
-              <p className="text-sm font-medium">“Which coffee is less sweet?”</p>
-              <p className="mt-2 flex items-start gap-1.5 text-xs text-accent-foreground">
-                <MessageCircleQuestion className="mt-px size-3.5 shrink-0" aria-hidden />
-                AI suggested Lingzhi Black Coffee, with no added sugar.
-              </p>
+            <div className="absolute -right-2 bottom-0 z-20 flex items-center gap-2.5 rounded-full border bg-card py-3 pr-5 pl-3 text-foreground shadow-lift sm:-right-4">
+              <span className="flex size-8 items-center justify-center rounded-full bg-primary-soft text-primary"><Sparkles className="size-4" aria-hidden /></span>
+              <p className="text-xs font-medium">A little guidance, anytime.<span className="mt-0.5 block text-[10px] font-normal text-muted-foreground">Meet your AI product assistant</span></p>
             </div>
           </div>
         )}
       </Container>
+      <div className="border-t border-white/15">
+        <Container>
+          <ul className="grid grid-cols-2 gap-x-4 gap-y-5 py-5 text-xs text-white/80 sm:grid-cols-4 sm:text-sm">
+            {[
+              { icon: Leaf, label: "Everyday DXN essentials" },
+              { icon: ShieldCheck, label: "Seller-confirmed orders" },
+              { icon: Truck, label: "Convenient local delivery" },
+              { icon: MessageCircleQuestion, label: "Personal help, always" },
+            ].map(({ icon: Icon, label }) => (
+              <li key={label} className="flex items-center justify-center gap-2.5"><Icon className="size-4 shrink-0 text-gold" strokeWidth={1.5} aria-hidden />{label}</li>
+            ))}
+          </ul>
+        </Container>
+      </div>
     </section>
   );
 }
 
 export function FeaturedCategories() {
   return (
-    <section className="py-16">
+    <section className="py-16 sm:py-20">
       <Container className="space-y-8">
         <SectionHeader
-          eyebrow="Shop by category"
+          eyebrow="A little something for every day"
           title="Find what fits your routine"
           action={
             <Button variant="link" asChild>
@@ -111,11 +130,11 @@ export function FeaturedCategories() {
 
 export function BestSellers({ products }: { products: Product[] }) {
   return (
-    <section className="py-16">
+    <section className="border-y bg-surface/70 py-16 sm:py-20">
       <Container className="space-y-8">
         <SectionHeader
           eyebrow="Customer favorites"
-          title="Best sellers"
+          title="Good things, worth repeating."
           description="The products our customers reorder most."
           action={
             <Button variant="outline" asChild>
@@ -141,7 +160,7 @@ export function WhyShopWithUs() {
   return (
     <section className="py-16">
       <Container>
-        <div className="rounded-3xl bg-primary px-6 py-12 text-primary-foreground sm:px-10 lg:px-14">
+        <div className="botanical-hero rounded-3xl px-6 py-12 text-primary-foreground sm:px-10 lg:px-14">
           <SectionHeader
             eyebrow="Why shop with us"
             title={<span className="text-primary-foreground">Friendly service, from question to delivery</span>}
@@ -184,9 +203,9 @@ export function HowOrderingWorks() {
         />
         <ol className="grid gap-4 md:grid-cols-5">
           {STEPS.map((s, i) => (
-            <li key={s.title} className="relative rounded-2xl border bg-card p-5 shadow-soft">
-              <span className="absolute top-4 right-4 font-display text-3xl text-muted-foreground/30" aria-hidden>
-                {i + 1}
+            <li key={s.title} className="relative rounded-2xl border bg-card p-5 shadow-soft transition-colors hover:border-primary/30">
+              <span className="absolute top-4 right-4 font-display text-3xl text-primary/25" aria-hidden>
+                0{i + 1}
               </span>
               <s.icon className="size-6 text-leaf" aria-hidden />
               <h3 className="mt-4 font-semibold">
@@ -252,15 +271,16 @@ export function FinalCTA() {
   return (
     <section className="py-16">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border bg-cream px-6 py-14 text-center sm:px-12">
-          <div className="absolute -top-16 -right-16 size-56 rounded-full bg-sage/30 blur-2xl" aria-hidden />
-          <div className="absolute -bottom-20 -left-10 size-56 rounded-full bg-clay/20 blur-2xl" aria-hidden />
+        <div className="botanical-hero relative overflow-hidden rounded-3xl px-6 py-16 text-center text-white sm:px-12">
+          <div className="absolute -top-16 -right-16 size-72 rounded-full border border-sage/20" aria-hidden />
+          <div className="absolute -bottom-20 -left-10 size-72 rounded-full border border-sage/20" aria-hidden />
           <div className="relative mx-auto max-w-xl space-y-5">
-            <h2 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">Not sure what to choose?</h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-xs tracking-[0.2em] text-gold uppercase">Your next favorite starts here</p>
+            <h2 className="font-display text-4xl font-normal tracking-tight sm:text-5xl">Let’s find your everyday.</h2>
+            <p className="text-base leading-relaxed text-white/75">
               Tell the assistant how you like your coffee or what you&apos;re looking for, and it will point you to the right product.
             </p>
-            <AskAIButton size="lg">Ask the AI Assistant</AskAIButton>
+            <AskAIButton size="lg" variant="gold">Find my favorites</AskAIButton>
           </div>
         </div>
       </Container>

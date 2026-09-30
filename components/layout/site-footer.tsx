@@ -34,7 +34,7 @@ const COLUMNS = [
 export function SiteFooter() {
   const { contact, seller, socials, disclaimers } = siteConfig;
   return (
-    <footer className="mt-24 border-t bg-[#f6f2ea]">
+    <footer className="site-footer mt-16 border-t">
       <Container className="grid gap-10 py-14 lg:grid-cols-[1.4fr_2fr]">
         <div className="space-y-5">
           <Logo />

@@ -46,7 +46,7 @@ export function DataTable<T>({
   return (
     <div className={className}>
       {mobileCard && (
-        <ul className="grid gap-3 lg:hidden">
+        <ul className="grid grid-cols-1 gap-3 lg:hidden">
           {rows.map((row) => (
             <li key={rowKey(row)}>{mobileCard(row)}</li>
           ))}

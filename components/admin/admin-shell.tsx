@@ -19,7 +19,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   useDbChange(loadCounts);
 
   return (
-    <div className="flex min-h-dvh bg-[#f7f6f2]">
+    <div className="flex min-h-dvh bg-surface">
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 lg:block">
         <DashboardSidebar counts={counts} />
       </aside>
