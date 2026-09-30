@@ -15,7 +15,7 @@ npm run typecheck  # tsc --noEmit
 ```
 
 - Customer site: `/`
-- Seller admin: `/admin` (no login yet; see *Limitations*)
+- Seller admin: `/admin` (redirects to `/login`; sample credentials are shown on the login page: `seller@luntianwellness.example` / `Salesloop#2026`)
 
 Stack: Next.js 15 (App Router), React 19, TypeScript (strict), Tailwind CSS v4, Radix UI primitives (shadcn-style components in `components/ui`), Lucide icons, Recharts, Sonner toasts.
 
@@ -103,7 +103,7 @@ interface AIAnalysis {
 
 ## Limitations and placeholders to replace before launch
 
-- **No authentication** on `/admin`. Add middleware and sessions when the backend exists.
+- **Mock authentication** only: `/login` checks a hard-coded sample credential (`services/auth.ts`) and stores a flag in localStorage. Replace with real sessions and middleware when the backend exists.
 - **Mock persistence** is per-browser localStorage. Settings edits affect the admin and the AI chat but not the server-rendered storefront copy (which reads `lib/mock-data/site.ts`).
 - **Product photos** are drawn SVG placeholders (`components/site/product-image.tsx`). Swap in real images.
 - **Prices, distributor ID, contact details, and social links** are placeholders.

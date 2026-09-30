@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { getSession } from "@/services/auth";
 import { getNavCounts, type NavCounts } from "@/services/notifications";
 import { useDbChange } from "@/lib/hooks/use-async";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
@@ -10,6 +11,8 @@ import { DashboardSidebar } from "./dashboard-sidebar";
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const [authed, setAuthed] = React.useState(false);
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [counts, setCounts] = React.useState<NavCounts>();
   const [dataVersion, setDataVersion] = React.useState(0);
@@ -17,6 +20,14 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   const loadCounts = React.useCallback(() => void getNavCounts().then(setCounts), []);
   React.useEffect(loadCounts, [loadCounts, pathname]);
   useDbChange(loadCounts);
+
+  // Mock auth guard: sessions live in localStorage, so the check runs after mount.
+  React.useEffect(() => {
+    if (getSession()) setAuthed(true);
+    else router.replace(`/login?next=${encodeURIComponent(pathname)}`);
+  }, [router, pathname]);
+
+  if (!authed) return <div className="min-h-dvh bg-surface" aria-busy />;
 
   return (
     <div className="flex min-h-dvh bg-surface">

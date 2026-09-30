@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 };
 
 /**
- * Seller admin. Authentication is not implemented in this frontend-only build;
- * protect /admin with middleware once the backend provides sessions.
+ * Seller admin. Auth is a mock localStorage session (see services/auth.ts, checked in AdminShell);
+ * protect /admin with middleware once the backend provides real sessions.
  */
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return <AdminShell>{children}</AdminShell>;
