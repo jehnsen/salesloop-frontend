@@ -186,7 +186,7 @@ export default function CustomerDetailPage() {
                     const product = bySlug.get(slug);
                     return (
                       <li key={slug} className="flex items-center gap-3 rounded-xl border p-3">
-                        {product && <div className="w-14 overflow-hidden rounded-lg"><ProductImage visual={product.visual} tone={product.tone} name={product.name} /></div>}
+                        {product && <div className="w-14 overflow-hidden rounded-lg"><ProductImage src={product.images?.[0]} visual={product.visual} tone={product.tone} name={product.name} /></div>}
                         <div>
                           <p className="font-medium">{name(slug)}</p>
                           <p className="text-sm text-muted-foreground">{qty} units ordered</p>

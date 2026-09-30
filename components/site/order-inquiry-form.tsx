@@ -224,7 +224,7 @@ export function OrderInquiryForm({ products, defaults }: { products: Product[]; 
           {product ? (
             <div className="flex gap-4">
               <div className="w-20 shrink-0 overflow-hidden rounded-xl border">
-                <ProductImage visual={product.visual} tone={product.tone} name={product.name} />
+                <ProductImage src={product.images?.[0]} visual={product.visual} tone={product.tone} name={product.name} />
               </div>
               <div className="min-w-0 space-y-1">
                 <p className="font-medium">{product.name}</p>

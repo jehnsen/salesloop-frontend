@@ -19,6 +19,8 @@ export interface ProductCategory {
   description: string;
   tone: ProductTone;
   visual: ProductVisual;
+  /** Lifestyle photo for category cards. */
+  image?: string;
 }
 
 export interface ProductFAQ {
@@ -50,6 +52,8 @@ export interface Product {
   visual: ProductVisual;
   tone: ProductTone;
   gallery: ProductTone[];
+  /** Real product photos (first is the primary). Falls back to the illustrated placeholder when empty. */
+  images?: string[];
   isBestSeller: boolean;
   /** Seller-controlled: whether the AI may use this product's information. */
   approvedForAI: boolean;

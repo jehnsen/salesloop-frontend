@@ -1,4 +1,5 @@
-import { useId } from "react";
+"use client";
+import { useId, useState } from "react";
 import type { ProductTone, ProductVisual } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -140,6 +141,8 @@ export function ProductImage({
   className,
   priority,
   transparent = false,
+  src,
+  fit = "contain",
 }: {
   visual: ProductVisual;
   tone: ProductTone;
@@ -150,7 +153,12 @@ export function ProductImage({
   priority?: boolean;
   /** Let editorial product arrangements use their own studio backdrop. */
   transparent?: boolean;
+  /** Real product photo. When set (and it loads) it replaces the illustration. */
+  src?: string;
+  /** "cover" for lifestyle photos, "contain" for packshots. */
+  fit?: "contain" | "cover";
 }) {
+  const [failed, setFailed] = useState<string>();
   const id = useId().replace(/:/g, "");
   const c = TONES[tone];
   const words = name
@@ -160,6 +168,21 @@ export function ProductImage({
   const transform = angle === 2 ? "translate(-50 -40) scale(1.5)" : angle === 1 ? "translate(12 6) scale(0.92)" : undefined;
   const gradientId = `bg-${id}`;
   const lightId = `light-${id}`;
+  if (src && failed !== src) {
+    return (
+      <div className={cn("relative aspect-square w-full overflow-hidden", !transparent && fit === "contain" && "bg-white", className)}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt={name}
+          loading={priority ? "eager" : "lazy"}
+          referrerPolicy="no-referrer"
+          onError={() => setFailed(src)}
+          className={cn("absolute inset-0 size-full", fit === "cover" ? "object-cover" : "object-contain p-2")}
+        />
+      </div>
+    );
+  }
   return (
     <div
       role="img"
