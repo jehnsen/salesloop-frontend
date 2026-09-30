@@ -9,6 +9,7 @@ export interface LeadFilters {
   search?: string;
   stage?: PipelineStage | "all";
   minScore?: number;
+  intent?: Lead["purchaseIntent"] | "all";
   product?: string;
   source?: Lead["source"] | "all";
   followUp?: "all" | "due" | "scheduled" | "none";
@@ -25,6 +26,7 @@ export function getLeads(filters: LeadFilters = {}) {
       .filter((l) => {
         if (filters.stage && filters.stage !== "all" && l.stage !== filters.stage) return false;
         if (filters.minScore && l.leadScore < filters.minScore) return false;
+        if (filters.intent && filters.intent !== "all" && l.purchaseIntent !== filters.intent) return false;
         if (filters.product && filters.product !== "all" && !l.interests.some((i) => i.productSlug === filters.product)) return false;
         if (filters.source && filters.source !== "all" && l.source !== filters.source) return false;
         if (filters.createdWithinDays && now - new Date(l.createdAt).getTime() > filters.createdWithinDays * 86_400_000) return false;
@@ -103,6 +105,39 @@ export function convertLeadToCustomer(id: string) {
     lead.nextFollowUpAt = undefined;
     addTimeline(lead, { type: "stage_change", title: "Converted to customer" });
     return { lead, customer };
+  });
+}
+
+/** Records that the seller messaged the lead outside the inbox (SMS, call, Viber). */
+export function logSellerMessage(id: string, message: string, channelLabel: string) {
+  return mutate((db) => {
+    const lead = must(db.leads.find((l) => l.id === id), "Lead", id);
+    addTimeline(lead, { type: "seller_message", title: `Seller messaged via ${channelLabel}`, description: message });
+    if (lead.stage === "new") lead.stage = "engaged";
+    return lead;
+  });
+}
+
+/** Contact page message: stored as a new lead so the seller can reply from the CRM. */
+export function submitContactMessage(input: { name: string; mobile: string; email?: string; message: string }) {
+  return mutate((db) => {
+    const existing = findLeadByMobile(db, input.mobile);
+    const lead =
+      existing ??
+      createLeadRecord(db, {
+        name: input.name,
+        mobile: input.mobile,
+        email: input.email,
+        source: "contact_form",
+        leadScore: 35,
+        purchaseIntent: "low",
+        lastIntent: "general_question",
+        preferredChannel: input.email ? "email" : "sms",
+        aiSummary: `Sent a message from the contact page: “${input.message.slice(0, 120)}”`,
+        recommendedAction: "Reply to the customer's message.",
+      });
+    addTimeline(lead, { type: "customer_message", title: "Contact form message", description: input.message });
+    return { id: lead.id };
   });
 }
 

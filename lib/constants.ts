@@ -67,6 +67,7 @@ export const LEAD_SOURCE_LABEL: Record<LeadSource, string> = {
   tiktok: "TikTok",
   referral: "Referral",
   order_form: "Order Form",
+  contact_form: "Contact Form",
 };
 
 export const CHANNEL_LABEL: Record<ContactChannel, string> = {

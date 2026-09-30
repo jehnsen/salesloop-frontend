@@ -7,7 +7,8 @@ export type LeadSource =
   | "instagram"
   | "tiktok"
   | "referral"
-  | "order_form";
+  | "order_form"
+  | "contact_form";
 
 export type PipelineStage =
   | "new"

@@ -1,5 +1,6 @@
 import type { SiteConfig } from "@/types";
 import { resetDb } from "@/lib/mock-data/store";
+import { createId } from "@/lib/utils";
 import { mutate, query } from "./_mock";
 
 export function getSiteConfig() {
@@ -32,6 +33,21 @@ export function setKnowledgeSourceApproved(id: string, approved: boolean) {
     if (source) source.approved = approved;
     return db.knowledgeSources;
   }, 150);
+}
+
+/** Mock upload: registers the file as a knowledge source awaiting approval. The file itself isn't stored. */
+export function addKnowledgeSource(fileName: string) {
+  return mutate((db) => {
+    db.knowledgeSources.push({
+      id: createId("ks"),
+      name: fileName,
+      type: "document",
+      items: 1,
+      approved: false,
+      updatedAt: new Date().toISOString(),
+    });
+    return db.knowledgeSources;
+  }, 800);
 }
 
 /** Clears every change made in this browser and restores the seed data. */

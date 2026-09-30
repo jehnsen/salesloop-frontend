@@ -30,6 +30,7 @@ const buttonVariants = cva(
         rounded: "rounded-lg",
       },
     },
+    compoundVariants: [{ variant: "link", class: "h-auto px-0" }],
     defaultVariants: { variant: "default", size: "default", shape: "pill" },
   },
 );

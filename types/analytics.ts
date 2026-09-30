@@ -42,6 +42,7 @@ export interface AnalyticsReport {
   leadSources: CategoryValue[];
   productInterest: CategoryValue[];
   repeatCustomers: TimeSeriesPoint[];
+  aiAssistedOrders: TimeSeriesPoint[];
   followUpConversion: CategoryValue[];
   contentPerformance: CategoryValue[];
 }

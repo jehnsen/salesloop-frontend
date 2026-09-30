@@ -133,6 +133,7 @@ export function getAnalytics(range: AnalyticsRange = "30d") {
       leadSources,
       productInterest,
       repeatCustomers: series(buckets, (t) => ({ repeat: t.repeatOrders, new: Math.max(t.orders - t.repeatOrders, 0) })),
+      aiAssistedOrders: series(buckets, (t) => ({ ai: t.aiOrders, other: Math.max(t.orders - t.aiOrders, 0) })),
       followUpConversion,
       contentPerformance,
     };

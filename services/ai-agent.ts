@@ -60,6 +60,11 @@ export function getAIActivity(options: { limit?: number; type?: AIActivity["type
   });
 }
 
+/** Admin sandbox: runs the agent against a message without saving anything. */
+export function previewAgentReply(text: string, state: ChatSessionState) {
+  return query((db) => composeReply(text, state, engineContext(db)), 500);
+}
+
 // --- Customer chat -----------------------------------------------------------
 
 export interface CustomerChatResult {
@@ -149,12 +154,17 @@ export function sendCustomerMessage(sessionId: string, text: string, state: Chat
     }
     if (known) next.returningCustomerId = known.id;
 
-    const reply = message("assistant", result.message, {
-      attachments: result.attachments,
-      suggestions: result.suggestions,
-    });
-
     const extra: ChatMessage[] = [];
+    const assistOnly = db.aiAgentConfig.autonomy === "assist_only" && !result.analysis.escalate;
+    const reply = assistOnly
+      ? message(
+          "assistant",
+          `Thanks for your message! ${db.siteConfig.seller.name.split(" ")[0]} will review it and reply shortly. You can keep browsing in the meantime.`,
+        )
+      : message("assistant", result.message, { attachments: result.attachments, suggestions: result.suggestions });
+    // Assist Only: the AI's answer waits in the inbox as a draft for the seller to approve.
+    if (assistOnly) extra.push(message("assistant", result.message, { isDraft: true }));
+
     const customerName = next.name ?? known?.name;
     const a = result.analysis;
     if (a.escalate) {
