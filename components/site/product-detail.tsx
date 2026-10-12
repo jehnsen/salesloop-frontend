@@ -15,12 +15,14 @@ import { QuantitySelector } from "./quantity-selector";
 
 export function ProductGallery({ product }: { product: Product }) {
   const [index, setIndex] = React.useState(0);
-  const shots = product.gallery.map((tone, i) => ({ tone, angle: (i % 3) as 0 | 1 | 2 }));
+  const shots = product.images?.length
+    ? product.images.map((src, i) => ({ src, tone: product.tone, angle: (i % 3) as 0 | 1 | 2 }))
+    : product.gallery.map((tone, i) => ({ src: undefined, tone, angle: (i % 3) as 0 | 1 | 2 }));
   const current = shots[index] ?? shots[0];
   return (
     <div className="space-y-3">
       <div className="overflow-hidden rounded-3xl border shadow-soft">
-        <ProductImage visual={product.visual} tone={current.tone} angle={current.angle} name={product.name} priority />
+        <ProductImage src={current.src} visual={product.visual} tone={current.tone} angle={current.angle} name={product.name} priority />
       </div>
       <div className="grid grid-cols-4 gap-3" role="tablist" aria-label="Product photos">
         {shots.map((s, i) => (
@@ -36,7 +38,7 @@ export function ProductGallery({ product }: { product: Product }) {
               i === index ? "border-primary" : "border-transparent opacity-80 hover:opacity-100",
             )}
           >
-            <ProductImage visual={product.visual} tone={s.tone} angle={s.angle} name={product.name} />
+            <ProductImage src={s.src} visual={product.visual} tone={s.tone} angle={s.angle} name={product.name} />
           </button>
         ))}
       </div>

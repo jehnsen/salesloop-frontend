@@ -53,7 +53,7 @@ function ProductMiniList({ products }: { products: Product[] }) {
             onClick={() => closeChat()}
             className="block overflow-hidden rounded-xl border bg-card transition-shadow hover:shadow-soft"
           >
-            <ProductImage visual={p.visual} tone={p.tone} name={p.name} className="aspect-[4/3]" />
+            <ProductImage src={p.images?.[0]} visual={p.visual} tone={p.tone} name={p.name} className="aspect-[4/3]" />
             <div className="space-y-1 p-2.5">
               <p className="line-clamp-2 text-xs leading-snug font-medium">{p.name}</p>
               <p className="text-xs font-semibold text-primary">{formatPeso(p.price)}</p>

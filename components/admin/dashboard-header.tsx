@@ -3,9 +3,10 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Bell, Menu, RotateCcw, Search, Settings, Store } from "lucide-react";
+import { Bell, LogOut, Menu, RotateCcw, Search, Settings, Store } from "lucide-react";
 import { toast } from "sonner";
 import { getNotifications, globalSearch, type AppNotification, type SearchResult } from "@/services/notifications";
+import { logout } from "@/services/auth";
 import { resetDemoData } from "@/services/settings";
 import { siteConfig } from "@/lib/mock-data/site";
 import { cn, timeAgo } from "@/lib/utils";
@@ -23,6 +24,7 @@ import { Avatar } from "@/components/ui/misc";
 import { ConfirmDialog } from "@/components/shared/confirm-dialog";
 
 export function DashboardHeader({ onOpenMenu, onDataReset }: { onOpenMenu: () => void; onDataReset: () => void }) {
+  const router = useRouter();
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [resetOpen, setResetOpen] = React.useState(false);
 
@@ -72,6 +74,14 @@ export function DashboardHeader({ onOpenMenu, onDataReset }: { onOpenMenu: () =>
             <DropdownMenuSeparator />
             <DropdownMenuItem destructive onSelect={() => setResetOpen(true)}>
               <RotateCcw /> Reset demo data
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onSelect={() => {
+                logout();
+                router.replace("/login");
+              }}
+            >
+              <LogOut /> Sign out
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

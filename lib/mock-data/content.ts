@@ -10,6 +10,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-09-18T09:00:00+08:00",
     readingMinutes: 4,
     tone: "coffee",
+    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=75",
     relatedProductSlugs: ["lingzhi-black-coffee", "lingzhi-coffee-3-in-1", "white-coffee-zhino"],
     content: [
       { type: "p", text: "Choosing a coffee is mostly about taste and convenience. Here's a quick way to think about the options we carry." },
@@ -32,6 +33,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-09-08T09:00:00+08:00",
     readingMinutes: 3,
     tone: "cream",
+    image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=900&q=75",
     relatedProductSlugs: ["lingzhi-coffee-3-in-1", "cocozhi-cocoa-drink"],
     content: [
       { type: "p", text: "Philippine weather can be humid, and instant coffee absorbs moisture easily. A few habits help keep every cup tasting right." },
@@ -51,6 +53,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-08-27T09:00:00+08:00",
     readingMinutes: 5,
     tone: "sage",
+    image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=75",
     relatedProductSlugs: ["spirulina-tablets", "rg-reishi-gano"],
     content: [
       { type: "p", text: "Reading labels helps you compare products and make informed choices. Here's what each part tells you." },
@@ -72,6 +75,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-08-12T09:00:00+08:00",
     readingMinutes: 3,
     tone: "clay",
+    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=75",
     relatedProductSlugs: ["lingzhi-coffee-3-in-1", "white-coffee-zhino", "cocozhi-cocoa-drink"],
     content: [
       { type: "p", text: "Hot afternoon? Instant coffee works great over ice if you dissolve it properly first." },
@@ -90,6 +94,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-07-30T09:00:00+08:00",
     readingMinutes: 3,
     tone: "leaf",
+    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=75",
     relatedProductSlugs: [],
     content: [
       { type: "p", text: "We don't use an instant checkout. Instead, every order is confirmed personally so you get accurate stock, pricing, and delivery details." },
@@ -106,6 +111,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-07-15T09:00:00+08:00",
     readingMinutes: 4,
     tone: "sage",
+    image: "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=900&q=75",
     relatedProductSlugs: ["spirulina-cereal", "spica-tea"],
     content: [
       { type: "p", text: "A good morning doesn't need to be complicated. A few consistent habits can make the start of the day feel less rushed." },

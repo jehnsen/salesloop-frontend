@@ -20,7 +20,7 @@ export function CategoryCard({
       href={`/categories/${category.slug}`}
       className={cn("group relative flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card transition-[box-shadow,border-color] duration-300 hover:border-primary/25 hover:shadow-lift", className)}
     >
-      <div className="overflow-hidden"><ProductImage visual={category.visual} tone={category.tone} name={category.shortName} angle={1} className="aspect-[5/4] transition-transform duration-500 group-hover:scale-105" /></div>
+      <div className="overflow-hidden"><ProductImage src={category.image} fit="cover" visual={category.visual} tone={category.tone} name={category.shortName} angle={1} className="aspect-[5/4] transition-transform duration-500 group-hover:scale-105" /></div>
       <div className="flex flex-1 items-start justify-between gap-3 p-5">
         <div>
           <h3 className="font-display text-xl font-medium">{title ?? category.name}</h3>
@@ -61,7 +61,7 @@ export function BlogCover({ post, className }: { post: BlogPost; className?: str
   const visual = post.category === "Recipes" || post.category === "Coffee Guides" ? "coffee" : post.category === "Lifestyle" ? "tea" : "jar";
   return (
     <div className={cn("relative overflow-hidden", className)}>
-      <ProductImage visual={visual} tone={post.tone} name={post.category} angle={1} className="absolute inset-0 aspect-auto h-full" />
+      <ProductImage src={post.image} fit="cover" visual={visual} tone={post.tone} name={post.category} angle={1} className="absolute inset-0 aspect-auto h-full" />
     </div>
   );
 }

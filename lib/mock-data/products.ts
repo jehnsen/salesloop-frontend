@@ -15,6 +15,83 @@ const PERSONAL_CARE_NOTICE =
 
 const PACKAGING_REF = { label: "Registration details", value: "Refer to official product packaging" };
 
+const IMAGES: Record<string, string[]> = {
+  "lingzhi-black-coffee": [
+    "https://f.nooncdn.com/p/pzsku/Z808B55B620DFD6B2C44FZ/45/1758031984/a129f008-d4b4-46e1-a071-fe45441802a5.jpg",
+    "https://f.nooncdn.com/p/pzsku/ZBD0E90B59FBF314FFEC9Z/45/1746876270/3a103547-78fd-4cd2-8894-08c7a82a8461.jpg",
+    "https://f.nooncdn.com/p/pzsku/ZBD0E90B59FBF314FFEC9Z/45/1746876270/dc12febd-4f38-4bfa-829c-b90c1aab3bcc.jpg",
+    "https://f.nooncdn.com/p/pzsku/ZBD0E90B59FBF314FFEC9Z/45/1746876270/8729cc4a-4e7c-46de-836c-032183d907e8.jpg",
+  ],
+  "lingzhi-coffee-3-in-1": [
+    "https://i.ebayimg.com/images/g/AwoAAeSwd5NpDPNM/s-l1200.jpg",
+    "https://f.nooncdn.com/p/pzsku/ZC89493635C506AD5CC61Z/45/1747317842/c878cf79-77e1-47d3-9bc4-f493ab6de760.jpg",
+    "https://f.nooncdn.com/p/pzsku/ZC4F00930F52ABD299812Z/45/_/1734263642/d7b61234-cb9e-4749-858c-fa6e1e3a30fa.jpg",
+  ],
+  "white-coffee-zhino": [
+    "https://alibooster.com/60-large_default/dxn-white-coffee-soluble-zhino-coffee-mushroom-ganoderma-12-x-28-grams.jpg",
+    "https://ganodermabolt.hu/img/24064/FB098/500x500/DXN-White-Coffee-Zhino.jpg?time=1680001321",
+    "https://alibooster.com/61-home_default/dxn-white-coffee-soluble-zhino-coffee-mushroom-ganoderma-12-x-28-grams.jpg",
+    "https://alibooster.com/62-home_default/dxn-white-coffee-soluble-zhino-coffee-mushroom-ganoderma-12-x-28-grams.jpg",
+  ],
+  "spirulina-tablets": [
+    "https://i.ebayimg.com/images/g/2hEAAOSw5IFnBshI/s-l1200.jpg",
+    "https://f.nooncdn.com/p/pnsku/N32454349A/45/_/1767607796/c9c5ac75-0962-4b2b-ba4f-9dfd7d51a2e7.jpg",
+    "https://f.nooncdn.com/p/v1685615374/N32454349A_2.jpg",
+    "https://f.nooncdn.com/p/v1578484301/N32454349A_3.jpg",
+  ],
+  "rg-reishi-gano": [
+    "https://f.nooncdn.com/p/v1575375487/N32465792A_1.jpg",
+    "https://f.nooncdn.com/p/v1596036801/N32465792A_2.jpg",
+    "https://f.nooncdn.com/p/v1575380193/N32474440A_1.jpg",
+    "https://img-cdn.heureka.group/v1/50846caa-b94d-5f77-99ca-35aabb3a9c3d.jpg",
+  ],
+  "gl-ganocelium": [
+    "https://f.nooncdn.com/p/v1579351375/N32473839A_1.jpg",
+    "https://f.nooncdn.com/p/v1579349899/N32473839A_2.jpg",
+    "https://1.bp.blogspot.com/-y9X0Pywb484/YG3fPnrmLWI/AAAAAAAALPQ/TNtC1O2N6EU8QylHpwTTP2x2p1OxLRV_wCLcBGAsYHQ/s16000/Ganocelium-90.png",
+    "https://i.ebayimg.com/images/g/5-0AAOSwtXJkUYGv/s-l1200.jpg",
+  ],
+  "cordyceps-coffee-3-in-1": [
+    "https://beatusnatura.com/132-large_default/cordyceps-coffee-3-in-1.jpg",
+    "https://beatusnatura.com/134-large_default/cordyceps-coffee-3-in-1.jpg",
+    "https://beatusnatura.com/259-large_default/cordyceps-coffee-3-in-1.jpg",
+  ],
+  "cocozhi-cocoa-drink": [
+    "https://beatusnatura.com/223-large_default/chokolate-drink-dxn.jpg",
+    "https://beatusnatura.com/224-large_default/chokolate-drink-dxn.jpg",
+    "https://beatusnatura.com/225-large_default/chokolate-drink-dxn.jpg",
+  ],
+  "spica-tea": [
+    "https://alibooster.com/837-large_default/dxn-spica-tea-green-mushroom-tea-ganoderma-and-radix-glycyrrhizae-licorice-root.jpg",
+    "https://alibooster.com/838-large_default/dxn-spica-tea-green-mushroom-tea-ganoderma-and-radix-glycyrrhizae-licorice-root.jpg",
+    "https://alibooster.com/839-large_default/dxn-spica-tea-green-mushroom-tea-ganoderma-and-radix-glycyrrhizae-licorice-root.jpg",
+  ],
+  "morinzhi-fruit-drink": [
+    "https://beatusnatura.com/384-large_default/morinzhi-285-ml-juice.jpg",
+    "https://beatusnatura.com/385-large_default/morinzhi-285-ml-juice.jpg",
+    "https://beatusnatura.com/374-large_default/dxn-morinzhi-700-ml.jpg",
+    "https://beatusnatura.com/375-large_default/dxn-morinzhi-700-ml.jpg",
+  ],
+  "ganozhi-toothpaste": [
+    "https://beatusnatura.com/405-large_default/toothpaste-ganozhi-dxn.jpg",
+    "https://beatusnatura.com/406-large_default/toothpaste-ganozhi-dxn.jpg",
+  ],
+  "ganozhi-soap": [
+    "https://beatusnatura.com/403-large_default/soap-dxn.jpg",
+    "https://beatusnatura.com/404-large_default/soap-dxn.jpg",
+  ],
+  "ganozhi-shampoo": [
+    "https://beatusnatura.com/401-large_default/ganozhi-shampoo-250-ml.jpg",
+    "https://beatusnatura.com/402-large_default/ganozhi-shampoo-250-ml.jpg",
+    "https://beatusnatura.com/505-large_default/ganozhi-shampoo-250-ml.jpg",
+  ],
+  "spirulina-cereal": [
+    "https://beatusnatura.com/376-large_default/spirulina-cereal-dxn.jpg",
+    "https://beatusnatura.com/377-large_default/spirulina-cereal-dxn.jpg",
+    "https://beatusnatura.com/378-large_default/spirulina-cereal-dxn.jpg",
+  ],
+};
+
 type Seed = Omit<Product, "id" | "shippingInfo" | "archived" | "approvedForAI" | "createdAt" | "updatedAt"> &
   Partial<Pick<Product, "approvedForAI" | "archived">>;
 
@@ -26,6 +103,7 @@ function product(seed: Seed, index: number): Product {
     approvedForAI: true,
     createdAt: daysAgo(400 - index * 20),
     updatedAt: daysAgo(3 + index),
+    images: IMAGES[seed.slug],
     ...seed,
   };
 }

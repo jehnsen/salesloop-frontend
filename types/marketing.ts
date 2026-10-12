@@ -76,6 +76,7 @@ export interface BlogPost {
   publishedAt: string;
   readingMinutes: number;
   tone: ProductTone;
+  image?: string;
   content: BlogBlock[];
   relatedProductSlugs: string[];
 }

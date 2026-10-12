@@ -69,7 +69,7 @@ export function HomeHero({ featured }: { featured: Product[] }) {
                 <p className="text-[10px] font-medium tracking-[0.24em] uppercase">The everyday collection</p>
                 <p className="mt-2 font-display text-2xl italic sm:text-3xl">Your moment of calm.</p>
               </div>
-              <ProductImage visual={a.visual} tone={a.tone} name={a.name} angle={1} className="mx-auto -mt-2 w-[85%] max-w-[320px] bg-transparent [&_svg]:transition-transform [&_svg]:duration-700 group-hover:[&_svg]:scale-105" transparent priority />
+              <ProductImage src={a.images?.[0]} visual={a.visual} tone={a.tone} name={a.name} angle={1} className="mx-auto -mt-2 w-[85%] max-w-[320px] bg-transparent [&_svg]:transition-transform [&_svg]:duration-700 group-hover:[&_svg]:scale-105" transparent priority />
               <div className="relative z-10 mx-6 mb-6 flex items-center justify-between gap-3 rounded-2xl border border-white/60 bg-white/70 p-4 backdrop-blur-sm sm:mx-8">
                 <div>
                   <p className="text-[10px] tracking-[0.12em] text-coffee uppercase">A daily favorite</p>

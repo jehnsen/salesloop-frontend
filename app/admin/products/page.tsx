@@ -151,7 +151,7 @@ function ProductsView() {
               header: "Product",
               cell: (p) => (
                 <button type="button" onClick={() => setEditing(p)} className="flex items-center gap-3 text-left">
-                  <div className="w-11 shrink-0 overflow-hidden rounded-lg border"><ProductImage visual={p.visual} tone={p.tone} name={p.name} /></div>
+                  <div className="w-11 shrink-0 overflow-hidden rounded-lg border"><ProductImage src={p.images?.[0]} visual={p.visual} tone={p.tone} name={p.name} /></div>
                   <div>
                     <p className="font-medium hover:underline">{p.name}</p>
                     <p className="text-xs text-muted-foreground">{p.unit}</p>
@@ -175,7 +175,7 @@ function ProductsView() {
           mobileCard={(p) => (
             <div className="flex gap-3 rounded-xl border bg-card p-3 shadow-soft">
               <button type="button" onClick={() => setEditing(p)} className="w-16 shrink-0 overflow-hidden rounded-lg border" aria-label={`Edit ${p.name}`}>
-                <ProductImage visual={p.visual} tone={p.tone} name={p.name} />
+                <ProductImage src={p.images?.[0]} visual={p.visual} tone={p.tone} name={p.name} />
               </button>
               <div className="min-w-0 flex-1 space-y-1.5">
                 <div className="flex items-start justify-between gap-2">

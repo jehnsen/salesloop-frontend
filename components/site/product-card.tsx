@@ -15,6 +15,7 @@ export function ProductCard({ product, className, priority }: { product: Product
     <article className={cn("group flex flex-col overflow-hidden rounded-2xl border border-border/80 bg-card p-2 shadow-soft transition-[box-shadow,border-color] duration-300 hover:border-primary/25 hover:shadow-lift", className)}>
       <Link href={`/products/${product.slug}`} className="relative block overflow-hidden rounded-xl" tabIndex={-1} aria-hidden>
         <ProductImage
+          src={product.images?.[0]}
           visual={product.visual}
           tone={product.tone}
           name={product.name}
