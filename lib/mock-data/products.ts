@@ -113,7 +113,7 @@ const seeds: Seed[] = [
     slug: "lingzhi-black-coffee",
     name: "Lingzhi Black Coffee",
     category: "coffee",
-    price: 620,
+    price: 1200,
     unit: "Box of 30 sachets (4.5g each)",
     stockStatus: "in_stock",
     stockQuantity: 42,

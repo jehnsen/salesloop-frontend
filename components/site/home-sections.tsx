@@ -1,19 +1,15 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  ArrowUpRight,
   ClipboardList,
   HandHeart,
   Info,
-  Leaf,
   MapPin,
   MessageCircleQuestion,
   PackageCheck,
   Repeat,
   Search,
   ShieldCheck,
-  Sparkles,
-  Truck,
   Zap,
 } from "lucide-react";
 import type { BlogPost, Product, Testimonial } from "@/types";
@@ -23,86 +19,6 @@ import { AskAIButton } from "@/components/chat/ask-ai-button";
 import { Container, SectionHeader } from "@/components/layout/page-primitives";
 import { BlogCard, CategoryCard, TestimonialCard } from "./cards";
 import { ProductGrid } from "./product-card";
-import { ProductImage } from "./product-image";
-import { formatPeso } from "@/lib/utils";
-
-export function HomeHero({ featured }: { featured: Product[] }) {
-  const [a] = featured;
-  return (
-    <section className="botanical-hero relative overflow-hidden text-primary-foreground">
-      <Container className="grid items-center gap-12 py-12 sm:py-16 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
-        <div className="relative z-10 animate-fade-up">
-          <p className="mb-7 inline-flex items-center gap-2.5 text-[10px] font-medium tracking-[0.22em] text-sage uppercase sm:text-xs">
-            <span className="h-px w-7 bg-gold" aria-hidden /> Small rituals. Everyday wellness.
-          </p>
-          <h1 className="max-w-xl font-display text-[clamp(2.9rem,5.5vw,5.2rem)] leading-[1.04] font-normal tracking-[-0.045em]">
-            A little care.<br />
-            A better <span className="font-light text-gold italic">everyday.</span>
-          </h1>
-          <p className="mt-7 max-w-md text-base leading-relaxed text-white/75 sm:text-lg">
-            From your first cup of coffee to your daily essentials, discover DXN favorites that fit naturally into your routine.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" variant="gold" asChild>
-              <Link href="/products">
-                Discover the collection <ArrowUpRight aria-hidden />
-              </Link>
-            </Button>
-            <AskAIButton size="lg" variant="outline" className="border-white/25 bg-transparent text-white hover:border-white/50 hover:bg-white/10">
-              Find my favorites
-            </AskAIButton>
-          </div>
-          <div className="mt-10 flex items-center gap-3 border-t border-white/15 pt-6">
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-sage/30 text-sage"><HandHeart className="size-5" strokeWidth={1.5} aria-hidden /></span>
-            <div className="text-xs leading-relaxed">
-              <p className="font-medium text-white">Thoughtfully chosen. Personally assisted.</p>
-              <p className="mt-0.5 text-white/65">Independent reseller · Metro Manila, Rizal & Bulacan</p>
-            </div>
-          </div>
-        </div>
-
-        {a && (
-          <div className="relative mx-auto w-full max-w-lg pb-5" aria-label="Featured collection">
-            <Link href={`/products/${a.slug}`} className="hero-studio group relative block overflow-hidden rounded-t-[46%] rounded-b-3xl text-forest">
-              <div className="relative z-10 pt-10 text-center sm:pt-12">
-                <Leaf className="mx-auto mb-2 size-5" strokeWidth={1.3} aria-hidden />
-                <p className="text-[10px] font-medium tracking-[0.24em] uppercase">The everyday collection</p>
-                <p className="mt-2 font-display text-2xl italic sm:text-3xl">Your moment of calm.</p>
-              </div>
-              <ProductImage src={a.images?.[0]} visual={a.visual} tone={a.tone} name={a.name} angle={1} className="mx-auto -mt-2 w-[85%] max-w-[320px] bg-transparent [&_svg]:transition-transform [&_svg]:duration-700 group-hover:[&_svg]:scale-105" transparent priority />
-              <div className="relative z-10 mx-6 mb-6 flex items-center justify-between gap-3 rounded-2xl border border-white/60 bg-white/70 p-4 backdrop-blur-sm sm:mx-8">
-                <div>
-                  <p className="text-[10px] tracking-[0.12em] text-coffee uppercase">A daily favorite</p>
-                  <p className="mt-1 text-sm font-semibold">{a.name}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{formatPeso(a.price)} · Reference price</p>
-                </div>
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-forest text-white"><ArrowUpRight className="size-5" aria-hidden /></span>
-              </div>
-            </Link>
-            <div className="absolute -right-2 bottom-0 z-20 flex items-center gap-2.5 rounded-full border bg-card py-3 pr-5 pl-3 text-foreground shadow-lift sm:-right-4">
-              <span className="flex size-8 items-center justify-center rounded-full bg-primary-soft text-primary"><Sparkles className="size-4" aria-hidden /></span>
-              <p className="text-xs font-medium">A little guidance, anytime.<span className="mt-0.5 block text-[10px] font-normal text-muted-foreground">Meet your AI product assistant</span></p>
-            </div>
-          </div>
-        )}
-      </Container>
-      <div className="border-t border-white/15">
-        <Container>
-          <ul className="grid grid-cols-2 gap-x-4 gap-y-5 py-5 text-xs text-white/80 sm:grid-cols-4 sm:text-sm">
-            {[
-              { icon: Leaf, label: "Everyday DXN essentials" },
-              { icon: ShieldCheck, label: "Seller-confirmed orders" },
-              { icon: Truck, label: "Convenient local delivery" },
-              { icon: MessageCircleQuestion, label: "Personal help, always" },
-            ].map(({ icon: Icon, label }) => (
-              <li key={label} className="flex items-center justify-center gap-2.5"><Icon className="size-4 shrink-0 text-gold" strokeWidth={1.5} aria-hidden />{label}</li>
-            ))}
-          </ul>
-        </Container>
-      </div>
-    </section>
-  );
-}
 
 export function FeaturedCategories() {
   return (

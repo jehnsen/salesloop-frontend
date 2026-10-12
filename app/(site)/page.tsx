@@ -2,11 +2,11 @@ import { getBestSellers } from "@/services/products";
 import { getBlogPosts, getTestimonials } from "@/services/blog";
 import { Container } from "@/components/layout/page-primitives";
 import { AIPreview } from "@/components/site/ai-preview";
+import { HomeHero } from "@/components/site/home-hero";
 import {
   BestSellers,
   FeaturedCategories,
   FinalCTA,
-  HomeHero,
   HowOrderingWorks,
   LatestArticles,
   Testimonials,
