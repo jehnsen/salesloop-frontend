@@ -12,7 +12,7 @@ export const followUps: FollowUp[] = [
     channel: "messenger",
     scheduledAt: manilaDayAt(0, 10),
     suggestedMessage:
-      "Hi Maria! Rhea here. Confirming your reorder: 3 boxes of Lingzhi Coffee 3-in-1 for Saturday delivery to QC. Total is ₱1,950 + delivery. Okay po ba?",
+      "Hi Maria! Julia here. Confirming your reorder: 3 boxes of Lingzhi Coffee 3-in-1 for Saturday delivery to QC. Total is ₱1,950 + delivery. Okay po ba?",
     suggestedAction: "Confirm reorder details and delivery day.",
     status: "scheduled",
     createdBy: "ai",
@@ -27,7 +27,7 @@ export const followUps: FollowUp[] = [
     channel: "sms",
     scheduledAt: manilaDayAt(0, 14),
     suggestedMessage:
-      "Hi Kristine! This is Rhea from Luntian Wellness. Following up on the 3 boxes of Lingzhi Coffee 3-in-1. Delivery to Quezon City is ₱80, so the total would be ₱2,030. Would you like me to reserve them for you?",
+      "Hi Kristine! This is Julia from Likas Essentials. Following up on the 3 boxes of Lingzhi Coffee 3-in-1. Delivery to Quezon City is ₱80, so the total would be ₱2,030. Would you like me to reserve them for you?",
     suggestedAction: "Send friendly follow-up.",
     status: "scheduled",
     createdBy: "ai",
@@ -57,7 +57,7 @@ export const followUps: FollowUp[] = [
     channel: "sms",
     scheduledAt: manilaDayAt(1, 9),
     suggestedMessage:
-      "Hi Ana! Rhea here. Your kids' Cocozhi might be running low. Would you like me to prepare 2 boxes again this week?",
+      "Hi Ana! Julia here. Your kids' Cocozhi might be running low. Would you like me to prepare 2 boxes again this week?",
     suggestedAction: "Offer a reorder of 2 boxes of Cocozhi.",
     status: "scheduled",
     createdBy: "ai",
@@ -102,7 +102,7 @@ export const followUps: FollowUp[] = [
     channel: "sms",
     scheduledAt: manilaDayAt(-2, 10),
     suggestedMessage:
-      "Hi Jenny! Rhea here. Kumusta? Just checking if you need White Coffee Zhino this month. I can deliver to Antipolo this week.",
+      "Hi Jenny! Julia here. Kumusta? Just checking if you need White Coffee Zhino this month. I can deliver to Antipolo this week.",
     suggestedAction: "Friendly check-in; no hard sell.",
     status: "scheduled",
     createdBy: "ai",

@@ -15,7 +15,7 @@ function timeline(leadId: string, events: EventSeed[]): TimelineEvent[] {
     .sort((a, b) => b.timestamp.localeCompare(a.timestamp));
 }
 
-const SELLER = "Rhea Bautista";
+const SELLER = "Julia Enrique";
 
 export const leads: Lead[] = [
   {
@@ -136,7 +136,7 @@ export const leads: Lead[] = [
       ["customer_message", "Asked if White Coffee is available", 30],
       ["ai_message", "AI confirmed availability and recommended adding soap", 29.9],
       ["inquiry", "Order inquiry created: White Coffee × 3, Soap × 2", 22],
-      ["seller_message", "Rhea sent GCash payment details", 18],
+      ["seller_message", "Julia sent GCash payment details", 18],
     ]),
   },
   {

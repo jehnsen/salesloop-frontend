@@ -7,7 +7,7 @@ import { Avatar } from "@/components/ui/misc";
 import { Container, PageHero, SectionHeader } from "@/components/layout/page-primitives";
 import { ProductImage } from "@/components/site/product-image";
 
-export const metadata: Metadata = { title: "About", description: "Meet the independent seller behind Luntian Wellness." };
+export const metadata: Metadata = { title: "About", description: "Meet the independent seller behind Likas Essentials." };
 
 const VALUES = [
   { icon: HandHeart, title: "Personal service", text: "Every order is confirmed by a real person who knows the products." },
@@ -39,7 +39,7 @@ export default function AboutPage() {
           </div>
           <p className="text-lg leading-relaxed">{seller.bio}</p>
           <p className="leading-relaxed text-muted-foreground">
-            Luntian Wellness started as a small Messenger-based store for friends and neighbors. This website makes it easier
+            Likas Essentials started as a small Messenger-based store for friends and neighbors. This website makes it easier
             to browse products, get quick answers from our AI assistant, and send an order inquiry. You still get the same
             personal service: every order is confirmed by me.
           </p>

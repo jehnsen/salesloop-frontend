@@ -72,7 +72,7 @@ export function DashboardSidebar({ counts, onNavigate }: { counts?: NavCounts; o
         <span className="flex size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar font-bold">S</span>
         <div className="leading-tight">
           <p className="font-semibold text-white">SalesLoop</p>
-          <p className="text-[11px] text-sidebar-muted">Luntian Wellness</p>
+          <p className="text-[11px] text-sidebar-muted">Likas Essentials</p>
         </div>
       </div>
       <nav aria-label="Admin" className="scrollbar-thin flex-1 space-y-6 overflow-y-auto px-3 py-4">

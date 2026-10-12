@@ -2,20 +2,20 @@ import type { KnowledgeSource, NotificationSetting, SiteConfig } from "@/types";
 import { daysAgo } from "./time";
 
 export const siteConfig: SiteConfig = {
-  storeName: "Luntian Wellness",
+  storeName: "Likas Essentials",
   tagline: "Everyday wellness products from your independent neighborhood reseller.",
   platformName: "SalesLoop",
   seller: {
-    name: "Rhea Bautista",
-    role: "Independent DXN Distributor",
+    name: "Julia Enrique",
+    role: "Independent DXN Distributor · San Mateo, Isabela Branch",
     distributorId: "PH-000000 (placeholder)",
-    bio: "I've been sharing coffee, beverages, and personal-care products with families around Metro Manila and Rizal since 2019. I personally confirm every order and I'm happy to answer questions. Message me anytime.",
+    bio: "I've been sharing coffee, beverages, and personal-care products with families in San Mateo, Isabela and nearby towns since 2019. I personally confirm every order and I'm happy to answer questions. Message me anytime.",
   },
   contact: {
     mobile: "0917 000 0000",
-    email: "hello@luntianwellness.example",
-    messenger: "Luntian Wellness PH",
-    address: "Pasig City, Metro Manila (pick-up by appointment)",
+    email: "hello@likasessentials.example",
+    messenger: "Likas Essentials PH",
+    address: "San Mateo, Isabela (pick-up by appointment)",
     hours: "Mon–Sat, 8:00 AM – 8:00 PM",
   },
   socials: [
@@ -47,7 +47,7 @@ export const siteConfig: SiteConfig = {
   ],
   disclaimers: {
     independentSeller:
-      "Luntian Wellness is run by an independent DXN distributor. This is not the official DXN corporate website. Product names and trademarks belong to their respective owners.",
+      "Likas Essentials is run by an independent DXN distributor. This is not the official DXN corporate website. Product names and trademarks belong to their respective owners.",
     health:
       "Products listed here are food, beverage, and personal-care products. They are not intended to diagnose, treat, cure, or prevent any disease and are not a replacement for medication. For medical concerns, consult a qualified healthcare professional.",
     ai: "AI-generated product information. For medical concerns, consult a qualified healthcare professional.",

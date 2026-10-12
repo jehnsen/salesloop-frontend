@@ -13,7 +13,7 @@ import {
 import { getAllProducts } from "@/services/products";
 import { createId } from "@/lib/utils";
 
-const STORAGE_KEY = "luntian-chat-session-v1";
+const STORAGE_KEY = "likas-chat-session-v1";
 
 export const DEFAULT_QUICK_ACTIONS = [
   "Recommend a coffee",

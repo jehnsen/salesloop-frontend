@@ -51,7 +51,7 @@ export function generateContent(input: GenerateContentInput) {
     const cta = `Message us or ask our AI assistant to send an order inquiry. 🌿`;
     const bodies: Record<GenerateContentInput["platform"], string> = {
       facebook: `${hook}\n\n${product.summary}\n\n☕ ${product.unit}\n📍 Delivery around Metro Manila, Rizal & Bulacan\n\n${cta}`,
-      instagram: `${hook} ✨\n${product.summary}\n\n#everydaywellness #${product.category.replace("-", "")} #LuntianWellness`,
+      instagram: `${hook} ✨\n${product.summary}\n\n#everydaywellness #${product.category.replace("-", "")} #LikasEssentials`,
       tiktok: `HOOK (0–3s): "${hook}"\nSCENE 1: Show the ${product.unit.toLowerCase()}.\nSCENE 2: ${product.preparation.split(".")[0]}.\nSCENE 3: Taste reaction.\nCTA: "Ask our AI assistant which one fits your routine!"`,
       blog: `Title idea: Getting to know ${product.name}\nOutline:\n1. What it is\n2. How to prepare it\n3. Storage tips\n4. How to order\n\nNote: stick to label information only.`,
       messenger_broadcast: `Hi {first_name}! ${hook} ${product.summary} Reply ORDER and I'll prepare it for you. Salamat!`,

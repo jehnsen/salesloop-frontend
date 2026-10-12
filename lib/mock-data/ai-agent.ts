@@ -6,7 +6,7 @@ export const aiAgentConfig: AIAgentConfig = {
   active: true,
   autonomy: "semi_automatic",
   greeting:
-    "Hi! I'm the Luntian Wellness AI assistant. I can help you find products, compare options, check availability, and send an order inquiry to the seller.",
+    "Hi! I'm the Likas Essentials AI assistant. I can help you find products, compare options, check availability, and send an order inquiry to the seller.",
   responseLanguage: "auto",
   capabilities: [
     { id: "product_qa", label: "Product Q&A", description: "Answers questions using approved product information.", enabled: true },

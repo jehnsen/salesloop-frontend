@@ -109,7 +109,7 @@ export const contentItems: ContentItem[] = [
     platform: "messenger_broadcast",
     campaignId: "cmp_002",
     status: "approved",
-    body: "Hi {first_name}! Rhea here from Luntian Wellness. If your coffee is running low, reply ORDER and I'll prepare your usual. Salamat! 😊",
+    body: "Hi {first_name}! Julia here from Likas Essentials. If your coffee is running low, reply ORDER and I'll prepare your usual. Salamat! 😊",
     createdAt: daysAgo(3),
     aiGenerated: true,
   },

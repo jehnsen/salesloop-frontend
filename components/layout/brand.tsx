@@ -5,12 +5,12 @@ import { cn } from "@/lib/utils";
 
 export function Logo({ className, subtitle = true, href = "/" }: { className?: string; subtitle?: boolean; href?: string }) {
   return (
-    <Link href={href} className={cn("group inline-flex items-center gap-2.5", className)} aria-label="Luntian Wellness home">
+    <Link href={href} className={cn("group inline-flex items-center gap-2.5", className)} aria-label="Likas Essentials home">
       <span className="flex size-10 items-center justify-center rounded-[14px_14px_14px_3px] bg-primary text-primary-foreground shadow-soft transition-transform group-hover:rotate-[-8deg]">
         <Leaf className="size-5" strokeWidth={1.5} aria-hidden />
       </span>
       <span className="flex flex-col leading-none">
-        <span className="font-display text-xl font-medium tracking-tight">Luntian Wellness</span>
+        <span className="font-display text-xl font-medium tracking-tight">Likas Essentials</span>
         {subtitle && <span className="mt-1 text-[9px] tracking-[0.18em] text-muted-foreground uppercase">Independent DXN reseller</span>}
       </span>
     </Link>

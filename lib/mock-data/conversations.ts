@@ -88,11 +88,11 @@ export const conversations: Conversation[] = [
     aiMode: "auto_reply",
     unread: 1,
     messages: [
-      msg("customer", "Hi Rhea! Pa-order ulit ng Lingzhi 3-in-1, same as before.", 42, a({
+      msg("customer", "Hi Julia! Pa-order ulit ng Lingzhi 3-in-1, same as before.", 42, a({
         intent: "reorder", confidence: 0.96, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1"],
         quantity: 3, location: "Quezon City", leadScore: 95, nextAction: "offer_reorder",
       })),
-      msg("assistant", "Welcome back, Maria! Same as last time—3 boxes of Lingzhi Coffee 3-in-1 delivered to Quezon City? I've passed this to Rhea so she can confirm the total and delivery schedule.", 41),
+      msg("assistant", "Welcome back, Maria! Same as last time—3 boxes of Lingzhi Coffee 3-in-1 delivered to Quezon City? I've passed this to Julia so she can confirm the total and delivery schedule.", 41),
       msg("system", "AI created a reorder request and notified the seller.", 41),
       msg("customer", "Yes po, Saturday sana ulit.", 30, a({
         intent: "buy_product", confidence: 0.9, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1"],
@@ -137,7 +137,7 @@ export const conversations: Conversation[] = [
         quantity: 3, location: "Marikina", leadScore: 84, nextAction: "create_order_inquiry",
       })),
       msg("assistant", "Got it: 3 White Coffee Zhino and 2 Ganozhi Soap for delivery to Marikina. I've sent your order inquiry to the seller for confirmation.", 1699),
-      msg("seller", "Hi Bea! Rhea here. Total is ₱2,430 + ₱80 delivery. GCash: 0917 000 0000 (R. Bautista). Please send a screenshot once paid. Salamat!", 1080),
+      msg("seller", "Hi Bea! Julia here. Total is ₱2,430 + ₱80 delivery. GCash: 0917 000 0000 (J. Enrique). Please send a screenshot once paid. Salamat!", 1080),
     ],
   }),
   conversation({
@@ -210,7 +210,7 @@ export const conversations: Conversation[] = [
         location: "Bulacan", leadScore: 88, nextAction: "escalate_to_seller", escalate: true,
         objections: ["Delivery delay"],
       })),
-      msg("assistant", "Sorry for the wait, Lovely! Your order was shipped by courier to Bulacan. I've flagged this to Rhea so she can check the tracking and update you personally.", 61),
+      msg("assistant", "Sorry for the wait, Lovely! Your order was shipped by courier to Bulacan. I've flagged this to Julia so she can check the tracking and update you personally.", 61),
       msg("system", "Complaint detected. Conversation escalated to seller.", 61),
     ],
   }),
