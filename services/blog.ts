@@ -1,6 +1,11 @@
 import { blogPosts, storeFaqs, testimonials } from "@/lib/mock-data/content";
+import { heroSlides } from "@/lib/mock-data/hero";
 
 /** Read-only marketing content for the customer site. */
+
+export async function getHeroSlides() {
+  return structuredClone(heroSlides);
+}
 
 export async function getBlogPosts(limit?: number) {
   const sorted = [...blogPosts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));

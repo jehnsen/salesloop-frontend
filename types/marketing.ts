@@ -89,6 +89,24 @@ export interface Testimonial {
   productSlug?: string;
 }
 
+/** One slide of the homepage hero video carousel. */
+export interface HeroSlide {
+  id: string;
+  /** Short name shown in the slide picker. */
+  label: string;
+  eyebrow: string;
+  title: string;
+  /** Second headline line, set in gold italics. */
+  highlight: string;
+  description: string;
+  /** Self-hosted, muted background clip and the still shown before it loads. */
+  video: string;
+  poster: string;
+  primary: { label: string; href: string };
+  /** Either a link or a prompt that opens the AI assistant. */
+  secondary: { label: string; href?: string; aiPrompt?: string };
+}
+
 export interface StoreFAQ {
   question: string;
   answer: string;
