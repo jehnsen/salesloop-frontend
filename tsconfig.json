@@ -34,8 +34,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
+    "build/ui-review/types/**/*.ts",
     "next-env.d.ts",
-    "build/ui-review/types/**/*.ts"
+    ".next-verify/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

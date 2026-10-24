@@ -7,7 +7,7 @@ import { ProductCatalog } from "@/components/site/product-catalog";
 
 export const metadata: Metadata = {
   title: "Products",
-  description: "Browse coffee, beverages, food supplements, and personal-care products. Ask the AI assistant or send an order inquiry.",
+  description: "Browse coffee, beverages, wellness extras, and personal-care products. Ask the AI assistant or send an order inquiry.",
 };
 
 const SORTS: ProductSort[] = ["featured", "name_asc", "price_asc", "price_desc", "newest"];

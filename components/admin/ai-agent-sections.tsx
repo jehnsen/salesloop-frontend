@@ -18,7 +18,7 @@ import { Panel } from "./primitives";
 const SAMPLES = [
   "Magkano Lingzhi Coffee? Maybe kukuha ako tatlo.",
   "Ano difference ng black coffee at 3-in-1?",
-  "Pwede ba ang RG sa may diabetes?",
+  "Pwede ba ang Lion's Mane Coffee sa may diabetes?",
   "Gusto ko ng refund, sira yung box",
 ];
 

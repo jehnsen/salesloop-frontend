@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: `%s · ${siteConfig.storeName}`,
   },
   description:
-    "Explore coffee, beverages, food supplements, and personal-care products from an independent reseller. Ask our AI assistant anytime and send an order inquiry.",
+    "Explore coffee, beverages, wellness extras, and personal-care products from an independent reseller. Ask our AI assistant anytime and send an order inquiry.",
   applicationName: siteConfig.storeName,
 };
 
