@@ -152,7 +152,7 @@ export function DeliverySection({ d }: { d: Draft }) {
       </ul>
       <div className="flex gap-2">
         <NativeSelect aria-label="Add delivery area" value={adding} onChange={(e) => setAdding(e.target.value)} wrapperClassName="flex-1">
-          <option value="">Choose a city or municipality…</option>
+          <option value="">Choose a province, city, or town…</option>
           {options.map((o) => <option key={o} value={o}>{o}</option>)}
         </NativeSelect>
         <Button variant="outline" disabled={!adding} onClick={() => { d.setDraft({ ...d.draft, deliveryAreas: [...areas, adding] }); setAdding(""); }}>

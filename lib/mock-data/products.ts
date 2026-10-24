@@ -2,7 +2,7 @@ import type { Product } from "@/types";
 import { daysAgo } from "./time";
 
 const SHIPPING_INFO =
-  "Delivery is available within Metro Manila, Rizal, and Bulacan. Provincial shipping can be arranged by courier. The seller confirms stock, delivery fee, and schedule after you send an inquiry. Pick-up in Pasig is available by appointment.";
+  "Delivery and shipping are available around Cagayan Valley (Isabela, Cagayan, Nueva Vizcaya, Quirino, Batanes) and the Cordillera region (Benguet, Abra, Apayao, Ifugao, Kalinga, Mountain Province). Courier shipping can be arranged for farther towns within these areas. The seller confirms stock, delivery fee, and schedule after you send an inquiry. Pick-up in San Mateo, Isabela is available by appointment.";
 
 const FOOD_NOTICE =
   "This is a food/beverage product. It is not intended to diagnose, treat, cure, or prevent any disease. If you are pregnant, nursing, taking medication, or have a medical condition, consult a qualified healthcare professional before use.";

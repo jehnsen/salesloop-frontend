@@ -165,7 +165,7 @@ export function OrderInquiryForm({ products, defaults }: { products: Product[]; 
             <FormField id="messengerName" label="Messenger / Facebook name" optional error={errors.messengerName}>
               {(p) => <Input {...p} value={form.messengerName} onChange={(e) => set("messengerName", e.target.value)} />}
             </FormField>
-            <FormField id="location" label="City / municipality" error={errors.location} hint="e.g. Quezon City, Antipolo, Malolos">
+            <FormField id="location" label="City / municipality" error={errors.location} hint="e.g. San Mateo, Cauayan, Tuguegarao, Baguio City">
               {(p) => <Input {...p} value={form.location} onChange={(e) => set("location", e.target.value)} autoComplete="address-level2" />}
             </FormField>
           </div>

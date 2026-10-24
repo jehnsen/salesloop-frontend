@@ -29,7 +29,7 @@ function blankProduct(): ProductInput {
     preparation: "",
     productInfo: [],
     shippingInfo:
-      "Delivery is available within Metro Manila, Rizal, and Bulacan. The seller confirms stock, delivery fee, and schedule after you send an inquiry.",
+      "Delivery and shipping are available around Cagayan Valley and the Cordillera region (CAR). The seller confirms stock, delivery fee, and schedule after you send an inquiry.",
     faqs: [],
     importantInfo: "",
     tags: [],

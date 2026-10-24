@@ -60,7 +60,7 @@ export default function ContactPage() {
           </div>
           <div className="space-y-3">
             <h2 className="font-semibold">Delivery areas</h2>
-            <p className="text-sm text-muted-foreground">{deliveryAreas.join(" · ")}. Provincial orders ship by courier.</p>
+            <p className="text-sm text-muted-foreground">{deliveryAreas.join(" · ")}. We deliver and ship around Cagayan Valley and the Cordillera region (CAR), with courier for farther towns.</p>
           </div>
         </div>
         <div className="space-y-4">

@@ -7,7 +7,7 @@ export const campaigns: Campaign[] = [
     name: "Coffee Awareness Campaign",
     objective: "Introduce the coffee line to new customers and drive AI chat conversations.",
     productSlugs: ["lingzhi-coffee-3-in-1", "lingzhi-black-coffee", "lingzhi-coffee-3-in-1-classic"],
-    targetAudience: "Working adults 25–45 in Metro Manila who drink instant coffee daily",
+    targetAudience: "Working adults 25–45 in Isabela and nearby provinces who drink instant coffee daily",
     channels: ["facebook", "instagram", "tiktok"],
     status: "active",
     startDate: daysAgo(21),

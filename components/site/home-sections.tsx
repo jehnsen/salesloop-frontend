@@ -67,7 +67,7 @@ export function BestSellers({ products }: { products: Product[] }) {
 const REASONS = [
   { icon: HandHeart, title: "Personal assistance", text: "A real seller who knows the products and replies personally." },
   { icon: Info, title: "Clear product information", text: "Ingredients, preparation, and label details, with no exaggerated claims." },
-  { icon: MapPin, title: "Convenient local ordering", text: "Delivery around Metro Manila, Rizal, and Bulacan, or pick-up in San Mateo, Isabela." },
+  { icon: MapPin, title: "Convenient local ordering", text: "Delivery around Cagayan Valley and CAR, or pick-up in San Mateo, Isabela." },
   { icon: Zap, title: "Fast inquiries", text: "The AI assistant answers instantly. The seller confirms within store hours." },
   { icon: Repeat, title: "Repeat-order assistance", text: "Just say “same order” and we'll prepare your usual." },
 ];

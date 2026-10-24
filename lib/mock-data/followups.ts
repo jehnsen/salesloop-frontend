@@ -12,7 +12,7 @@ export const followUps: FollowUp[] = [
     channel: "messenger",
     scheduledAt: manilaDayAt(0, 10),
     suggestedMessage:
-      "Hi Maria! Julia here. Confirming your reorder: 3 boxes of Lingzhi Coffee 3-in-1 for Saturday delivery to QC. Total is ₱2,865 + delivery. Okay po ba?",
+      "Hi Maria! Julia here. Confirming your reorder: 3 boxes of Lingzhi Coffee 3-in-1 for Saturday delivery to Cauayan. Total is ₱2,865 + delivery. Okay po ba?",
     suggestedAction: "Confirm reorder details and delivery day.",
     status: "scheduled",
     createdBy: "ai",
@@ -27,7 +27,7 @@ export const followUps: FollowUp[] = [
     channel: "sms",
     scheduledAt: manilaDayAt(0, 14),
     suggestedMessage:
-      "Hi Kristine! This is Julia from Likas Essentials. Following up on the 3 boxes of Lingzhi Coffee 3-in-1. Delivery to Quezon City is ₱80, so the total would be ₱2,945. Would you like me to reserve them for you?",
+      "Hi Kristine! This is Julia from Likas Essentials. Following up on the 3 boxes of Lingzhi Coffee 3-in-1. Delivery to Cauayan is ₱80, so the total would be ₱2,945. Would you like me to reserve them for you?",
     suggestedAction: "Send friendly follow-up.",
     status: "scheduled",
     createdBy: "ai",
@@ -102,7 +102,7 @@ export const followUps: FollowUp[] = [
     channel: "sms",
     scheduledAt: manilaDayAt(-2, 10),
     suggestedMessage:
-      "Hi Jenny! Julia here. Kumusta? Just checking if you need Lingzhi Coffee 3-in-1 Classic this month. I can deliver to Antipolo this week.",
+      "Hi Jenny! Julia here. Kumusta? Just checking if you need Lingzhi Coffee 3-in-1 Classic this month. I can deliver to Santiago City this week.",
     suggestedAction: "Friendly check-in; no hard sell.",
     status: "scheduled",
     createdBy: "ai",

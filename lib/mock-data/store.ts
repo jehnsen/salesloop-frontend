@@ -48,7 +48,7 @@ export interface MockDatabase {
   knowledgeSources: KnowledgeSource[];
 }
 
-const STORAGE_KEY = "salesloop-mock-db-v3";
+const STORAGE_KEY = "salesloop-mock-db-v4";
 
 function createSeed(): MockDatabase {
   return structuredClone({

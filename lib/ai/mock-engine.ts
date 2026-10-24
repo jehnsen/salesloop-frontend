@@ -9,7 +9,7 @@ import type {
   PurchaseIntent,
   SiteConfig,
 } from "@/types";
-import { PH_LOCATIONS } from "@/lib/constants";
+import { isInDeliveryArea, PH_LOCATIONS } from "@/lib/constants";
 import { formatPeso } from "@/lib/utils";
 
 /**
@@ -129,6 +129,7 @@ export function detectQuantity(text: string): number | undefined {
 export function detectLocation(text: string): string | undefined {
   const t = text.toLowerCase();
   if (/\bqc\b/.test(t)) return "Quezon City";
+  if (/\bbaguio\b/.test(t)) return "Baguio City";
   const sorted = [...PH_LOCATIONS].sort((a, b) => b.length - a.length);
   const plain = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
   const normalized = plain(t);
@@ -351,6 +352,16 @@ function decideNextAction(
 // Reply composition
 // ---------------------------------------------------------------------------
 
+const LOCATION_SUGGESTIONS = ["San Mateo", "Cauayan", "Tuguegarao", "Baguio City"];
+
+function deliveryCoverage(areas: string[]) {
+  return `We deliver and ship around Cagayan Valley and the Cordillera region (CAR): ${areas.join(", ")}. Courier shipping is available for farther towns within these provinces.`;
+}
+
+function outsideAreaReply(location: string, areas: string[]) {
+  return `Sorry, we can't deliver to ${location} yet. We only serve ${areas.slice(0, 5).join(", ")}, and other provinces in Cagayan Valley and CAR. There are DXN offices and distributors closer to you who can help. If you have a delivery address in our area, I'm happy to continue.`;
+}
+
 function unitWord(product: Product, qty = 2) {
   const unit = product.unit.toLowerCase();
   const base = unit.startsWith("bottle") ? "bottle" : unit.startsWith("bar") ? "bar" : unit.startsWith("tube") ? "tube" : unit.startsWith("pack") ? "pack" : "box";
@@ -541,8 +552,8 @@ export function composeReply(text: string, state: ChatSessionState, ctx: EngineC
     }
     case "ask_location": {
       if (!product) {
-        message = `We deliver within ${ctx.site.deliveryAreas.slice(0, 6).join(", ")}, and nearby areas, and ship provincial orders by courier. What city or municipality are you located in?`;
-        suggestions = ["Quezon City", "Pasig", "Antipolo", "Makati"];
+        message = `${deliveryCoverage(ctx.site.deliveryAreas)} What city or municipality are you located in?`;
+        suggestions = LOCATION_SUGGESTIONS;
         break;
       }
       const q = next.quantity;
@@ -550,17 +561,21 @@ export function composeReply(text: string, state: ChatSessionState, ctx: EngineC
         analysis.intent === "price_inquiry" || (q && state.quantity !== q)
           ? `We currently have ${product.name} ${product.stockStatus === "out_of_stock" ? "on restock" : "available"} at ${priceLine(product)}.${q ? ` You're considering ${q} ${unitWord(product, q)}—is that correct?` : ""}`
           : analysis.intent === "shipping_inquiry"
-            ? "We deliver within Metro Manila, Rizal, and Bulacan, and ship provincial orders by courier."
+            ? deliveryCoverage(ctx.site.deliveryAreas)
             : `${stockPhrase(product)}.`;
       message = `${lead} I can also help check delivery availability. What city or municipality are you located in?`;
-      suggestions = ["Quezon City", "Pasig", "Antipolo", "Makati"];
+      suggestions = LOCATION_SUGGESTIONS;
       break;
     }
     case "capture_contact": {
       if (!product || !next.quantity) break;
-      const inArea = next.location && ctx.site.deliveryAreas.includes(next.location);
+      if (next.location && !isInDeliveryArea(next.location, ctx.site.deliveryAreas)) {
+        message = outsideAreaReply(next.location, ctx.site.deliveryAreas);
+        suggestions = LOCATION_SUGGESTIONS;
+        break;
+      }
       const total = product.price * next.quantity;
-      message = `${inArea ? `Great, we deliver to ${next.location}.` : `We can ship to ${next.location} by courier.`} For ${next.quantity} ${unitWord(product, next.quantity)} of ${product.name}, the reference total is ${formatPeso(total)} before delivery. The seller will confirm the final amount and schedule. May I have your name and mobile number so the seller can reach you?`;
+      message = `${next.location ? `Great, we deliver to ${next.location}. ` : ""}For ${next.quantity} ${unitWord(product, next.quantity)} of ${product.name}, the reference total is ${formatPeso(total)} before delivery. The seller will confirm the final amount and schedule. May I have your name and mobile number so the seller can reach you?`;
       attachments.push({ type: "lead_form", productSlug: product.slug, quantity: next.quantity, location: next.location });
       break;
     }
@@ -577,11 +592,13 @@ export function composeReply(text: string, state: ChatSessionState, ctx: EngineC
     case "answer_question":
     default: {
       if (analysis.intent === "shipping_inquiry" && next.location) {
-        const inArea = ctx.site.deliveryAreas.includes(next.location);
-        message = inArea
-          ? `Yes, we deliver to ${next.location}! The seller confirms the delivery fee based on your exact address. Which product are you interested in?`
-          : `We can ship to ${next.location} by courier. The seller will confirm the fee and schedule. Which product are you interested in?`;
-        attachments.push(productCardsFor(ctx.products));
+        if (isInDeliveryArea(next.location, ctx.site.deliveryAreas)) {
+          message = `Yes, we deliver to ${next.location}! The seller confirms the delivery fee based on your exact address. Which product are you interested in?`;
+          attachments.push(productCardsFor(ctx.products));
+        } else {
+          message = outsideAreaReply(next.location, ctx.site.deliveryAreas);
+          suggestions = LOCATION_SUGGESTIONS;
+        }
       } else if (signals.howToOrder) {
         message = `Ordering is simple: 1) choose your products, 2) send an order inquiry (I can prepare it for you), 3) ${ctx.site.seller.name} confirms availability, total amount, payment, and delivery, 4) you pay and receive your order. There's no instant checkout, so every order is personally confirmed.`;
         attachments.push({ type: "order_link", productSlug: next.productSlug, quantity: next.quantity });
@@ -600,7 +617,7 @@ export function composeReply(text: string, state: ChatSessionState, ctx: EngineC
         const methods = ctx.site.paymentMethods.filter((m) => m.enabled).map((m) => m.label);
         message = `We accept ${methods.join(", ")}. The seller shares payment details after confirming your order.`;
       } else if (/where.*deliver|saan.*deliver|delivery area|areas/i.test(text)) {
-        message = `We deliver to ${ctx.site.deliveryAreas.slice(0, 8).join(", ")}, and more. Provincial orders can be shipped by courier.`;
+        message = deliveryCoverage(ctx.site.deliveryAreas);
       } else if (signals.greeting) {
         message = ctx.config.greeting + " What can I help you with today?";
         suggestions = DEFAULT_SUGGESTIONS;

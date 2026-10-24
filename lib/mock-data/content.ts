@@ -123,19 +123,19 @@ export const blogPosts: BlogPost[] = [
 
 /** Sample feedback for the demo. Replace with real, consented customer reviews before launch. */
 export const testimonials: Testimonial[] = [
-  { id: "tst_001", name: "Maria S.", location: "Quezon City", quote: "Ang bilis mag-reply! I asked about prices at night and the seller confirmed my order the next morning. Delivery was on time.", productSlug: "lingzhi-coffee-3-in-1" },
-  { id: "tst_002", name: "Mark V.", location: "Cainta", quote: "I like that I can just message 'same order' and they already know what I usually get. Very convenient for our office.", productSlug: "lingzhi-black-coffee" },
-  { id: "tst_003", name: "Ana C.", location: "Pasig", quote: "The AI assistant helped me compare the drinks before I ordered. My kids like the Cocozhi as a cold chocolate drink.", productSlug: "cocozhi-cocoa-drink" },
-  { id: "tst_004", name: "Grace L.", location: "Caloocan", quote: "Julia sent me the full label details when I asked. Clear answers, no pressure to buy.", productSlug: "lions-mane-coffee" },
+  { id: "tst_001", name: "Maria S.", location: "Cauayan", quote: "Ang bilis mag-reply! I asked about prices at night and the seller confirmed my order the next morning. Delivery was on time.", productSlug: "lingzhi-coffee-3-in-1" },
+  { id: "tst_002", name: "Mark V.", location: "Tuguegarao", quote: "I like that I can just message 'same order' and they already know what I usually get. Very convenient for our office.", productSlug: "lingzhi-black-coffee" },
+  { id: "tst_003", name: "Ana C.", location: "Ilagan", quote: "The AI assistant helped me compare the drinks before I ordered. My kids like the Cocozhi as a cold chocolate drink.", productSlug: "cocozhi-cocoa-drink" },
+  { id: "tst_004", name: "Grace L.", location: "La Trinidad", quote: "Julia sent me the full label details when I asked. Clear answers, no pressure to buy.", productSlug: "lions-mane-coffee" },
 ];
 
 export const storeFaqs: StoreFAQ[] = [
   { group: "Ordering", question: "How do I order?", answer: "Browse products and send an order inquiry, or ask the AI assistant to prepare one. The seller will confirm availability, total amount, payment, and delivery before anything is processed." },
   { group: "Ordering", question: "Is there an online checkout?", answer: "Not yet. Every order is confirmed personally by the seller so stock and delivery details are accurate." },
   { group: "Ordering", question: "Can I reorder my usual products?", answer: "Yes! Just message \"same order\" in the chat or on Messenger and the seller will prepare your usual order for confirmation." },
-  { group: "Delivery & Payment", question: "Where do you deliver?", answer: "We deliver within Metro Manila, Rizal, and Bulacan. Provincial orders can be shipped by courier. The seller confirms the delivery fee after your inquiry." },
-  { group: "Delivery & Payment", question: "What payment methods do you accept?", answer: "Cash on delivery (Metro Manila), GCash, Maya, and bank transfer." },
-  { group: "Delivery & Payment", question: "How long does delivery take?", answer: "Metro Manila deliveries usually arrive within 1–3 days after confirmation. Courier shipments may take 3–7 days." },
+  { group: "Delivery & Payment", question: "Where do you deliver?", answer: "We deliver and ship around Cagayan Valley (Isabela, Cagayan, Nueva Vizcaya, Quirino, Batanes) and the Cordillera region (Benguet, Abra, Apayao, Ifugao, Kalinga, Mountain Province). Courier shipping is available for farther towns within these areas. The seller confirms the delivery fee after your inquiry." },
+  { group: "Delivery & Payment", question: "What payment methods do you accept?", answer: "Cash on delivery (within our delivery areas), GCash, Maya, and bank transfer." },
+  { group: "Delivery & Payment", question: "How long does delivery take?", answer: "Deliveries within Isabela usually arrive within 1–3 days after confirmation. Courier shipments to other towns in Cagayan Valley and CAR may take 3–7 days." },
   { group: "Products", question: "Are these official DXN products?", answer: "Products are sourced through an independent DXN distributor. This website is operated by the distributor and is not the official DXN corporate website." },
   { group: "Products", question: "Can these products treat a health condition?", answer: "No. Our products are foods, beverages, and personal-care items. They are not intended to diagnose, treat, cure, or prevent any disease. Please consult a qualified healthcare professional for medical advice." },
   { group: "Products", question: "Are the prices final?", answer: "Prices shown are reference prices. The seller confirms the final amount, including delivery, before you pay." },

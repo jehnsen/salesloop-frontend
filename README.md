@@ -22,7 +22,7 @@ Stack: Next.js 15 (App Router), React 19, TypeScript (strict), Tailwind CSS v4, 
 ## Try the demo flow
 
 1. Open a product, e.g. `/products/lingzhi-coffee-3-in-1`, and click **Ask AI About This Product**.
-2. Type `Magkano? Kukuha ako tatlo.`, then `Quezon City`.
+2. Type `Magkano? Kukuha ako tatlo.`, then `Cauayan`.
 3. Fill in the lead form in the chat, then click **Send order inquiry** (it arrives pre-filled) and submit.
 4. Open `/admin/leads`, `/admin/conversations`, and `/admin/orders`: the new lead, the mirrored chat with AI analysis, and the order inquiry are all there.
 

@@ -40,14 +40,14 @@ export const conversations: Conversation[] = [
         quantity: 3, leadScore: 74, nextAction: "ask_location",
       })),
       msg("assistant", "We currently have Lingzhi Coffee 3-in-1 available at a reference price of ₱955 per box. You're considering 3 boxes—is that correct? I can also help check delivery availability. What city or municipality are you located in?", 239),
-      msg("customer", "Yes 3 boxes. Quezon City ako.", 210, a({
+      msg("customer", "Yes 3 boxes. Cauayan ako.", 210, a({
         intent: "buy_product", confidence: 0.91, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1"],
-        quantity: 3, location: "Quezon City", leadScore: 83, nextAction: "capture_contact",
+        quantity: 3, location: "Cauayan", leadScore: 83, nextAction: "capture_contact",
       })),
-      msg("assistant", "Great, we deliver to Quezon City. For 3 boxes the reference total is ₱2,865 before delivery. The seller will confirm the final amount and schedule. May I have your name and mobile number so the seller can reach you?", 209),
+      msg("assistant", "Great, we deliver to Cauayan. For 3 boxes the reference total is ₱2,865 before delivery. The seller will confirm the final amount and schedule. May I have your name and mobile number so the seller can reach you?", 209),
       msg("customer", "Kristine, 0917 123 4567. Magkano delivery fee?", 192, a({
         intent: "shipping_inquiry", confidence: 0.88, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1"],
-        quantity: 3, location: "Quezon City", leadScore: 87, nextAction: "create_order_inquiry",
+        quantity: 3, location: "Cauayan", leadScore: 87, nextAction: "create_order_inquiry",
         objections: ["Asked about the delivery fee"],
       })),
       msg("assistant", "Thanks, Kristine! Delivery fees depend on your exact area, so the seller will confirm it with you shortly. Would you like me to send an order inquiry for 3 boxes now?", 191),
@@ -90,13 +90,13 @@ export const conversations: Conversation[] = [
     messages: [
       msg("customer", "Hi Julia! Pa-order ulit ng Lingzhi 3-in-1, same as before.", 42, a({
         intent: "reorder", confidence: 0.96, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1"],
-        quantity: 3, location: "Quezon City", leadScore: 95, nextAction: "offer_reorder",
+        quantity: 3, location: "Cauayan", leadScore: 95, nextAction: "offer_reorder",
       })),
-      msg("assistant", "Welcome back, Maria! Same as last time—3 boxes of Lingzhi Coffee 3-in-1 delivered to Quezon City? I've passed this to Julia so she can confirm the total and delivery schedule.", 41),
+      msg("assistant", "Welcome back, Maria! Same as last time—3 boxes of Lingzhi Coffee 3-in-1 delivered to Cauayan? I've passed this to Julia so she can confirm the total and delivery schedule.", 41),
       msg("system", "AI created a reorder request and notified the seller.", 41),
       msg("customer", "Yes po, Saturday sana ulit.", 30, a({
         intent: "buy_product", confidence: 0.9, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1"],
-        quantity: 3, location: "Quezon City", leadScore: 96, nextAction: "escalate_to_seller", escalate: true,
+        quantity: 3, location: "Cauayan", leadScore: 96, nextAction: "escalate_to_seller", escalate: true,
       })),
     ],
   }),
@@ -132,11 +132,11 @@ export const conversations: Conversation[] = [
         leadScore: 60, nextAction: "ask_quantity",
       })),
       msg("assistant", "Yes, Lingzhi Coffee 3-in-1 Classic is available! How many boxes would you like? Many customers also add Ganozhi Soap to their order.", 1799),
-      msg("customer", "3 boxes, tapos 2 soap. Marikina ako.", 1700, a({
+      msg("customer", "3 boxes, tapos 2 soap. San Mateo ako.", 1700, a({
         intent: "buy_product", confidence: 0.95, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1-classic", "ganozhi-soap"],
-        quantity: 3, location: "Marikina", leadScore: 84, nextAction: "create_order_inquiry",
+        quantity: 3, location: "San Mateo", leadScore: 84, nextAction: "create_order_inquiry",
       })),
-      msg("assistant", "Got it: 3 Lingzhi Coffee 3-in-1 Classic and 2 Ganozhi Soap for delivery to Marikina. I've sent your order inquiry to the seller for confirmation.", 1699),
+      msg("assistant", "Got it: 3 Lingzhi Coffee 3-in-1 Classic and 2 Ganozhi Soap for delivery to San Mateo. I've sent your order inquiry to the seller for confirmation.", 1699),
       msg("seller", "Hi Bea! Julia here. Total is ₱2,960 + ₱80 delivery. GCash: 0917 000 0000 (J. Enrique). Please send a screenshot once paid. Salamat!", 1080),
     ],
   }),
@@ -207,10 +207,10 @@ export const conversations: Conversation[] = [
     messages: [
       msg("customer", "Hi, 3 days na po wala pa yung order ko. Saan na kaya?", 62, a({
         intent: "complaint", confidence: 0.9, purchaseIntent: "high", products: ["cocozhi-cocoa-drink-10"],
-        location: "Bulacan", leadScore: 88, nextAction: "escalate_to_seller", escalate: true,
+        location: "Bayombong", leadScore: 88, nextAction: "escalate_to_seller", escalate: true,
         objections: ["Delivery delay"],
       })),
-      msg("assistant", "Sorry for the wait, Lovely! Your order was shipped by courier to Bulacan. I've flagged this to Julia so she can check the tracking and update you personally.", 61),
+      msg("assistant", "Sorry for the wait, Lovely! Your order was shipped by courier to Bayombong. I've flagged this to Julia so she can check the tracking and update you personally.", 61),
       msg("system", "Complaint detected. Conversation escalated to seller.", 61),
     ],
   }),

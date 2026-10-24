@@ -90,7 +90,7 @@ export function ProductPurchasePanel({ product, categoryName }: { product: Produ
       <ul className="grid gap-3 border-t pt-5 text-sm sm:grid-cols-2">
         <li className="flex items-start gap-2">
           <Truck className="mt-0.5 size-4 shrink-0 text-leaf" aria-hidden />
-          Delivery in Metro Manila, Rizal & Bulacan; courier for provinces
+          Delivery & courier around Cagayan Valley and CAR
         </li>
         <li className="flex items-start gap-2">
           <ShieldCheck className="mt-0.5 size-4 shrink-0 text-leaf" aria-hidden />

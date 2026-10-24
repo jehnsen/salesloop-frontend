@@ -185,7 +185,57 @@ export const AI_ACTIVITY_LABEL: Record<AIActivityType, string> = {
   blocked_claim: "Blocked a non-compliant reply",
 };
 
-export const PH_LOCATIONS = [
+/** Towns and cities we know, grouped by the province (or HUC) that delivery areas are set at. */
+export const TOWN_PROVINCE: Record<string, string> = {
+  // Cagayan Valley (Region II)
+  "San Mateo": "Isabela",
+  Cauayan: "Isabela",
+  Ilagan: "Isabela",
+  "Santiago City": "Isabela",
+  Echague: "Isabela",
+  Cabatuan: "Isabela",
+  Cabagan: "Isabela",
+  Tumauini: "Isabela",
+  Tuguegarao: "Cagayan",
+  Aparri: "Cagayan",
+  Solana: "Cagayan",
+  Alcala: "Cagayan",
+  Bayombong: "Nueva Vizcaya",
+  Solano: "Nueva Vizcaya",
+  Bambang: "Nueva Vizcaya",
+  Cabarroguis: "Quirino",
+  Diffun: "Quirino",
+  Maddela: "Quirino",
+  Basco: "Batanes",
+  // Cordillera Administrative Region (CAR)
+  "Baguio City": "Benguet",
+  "La Trinidad": "Benguet",
+  Itogon: "Benguet",
+  Bangued: "Abra",
+  Tabuk: "Kalinga",
+  Lagawe: "Ifugao",
+  Banaue: "Ifugao",
+  Bontoc: "Mountain Province",
+  Sagada: "Mountain Province",
+};
+
+/** Provinces covered by default: Cagayan Valley, then CAR. */
+export const SERVICE_PROVINCES = [
+  "Isabela",
+  "Cagayan",
+  "Nueva Vizcaya",
+  "Quirino",
+  "Batanes",
+  "Benguet",
+  "Abra",
+  "Apayao",
+  "Ifugao",
+  "Kalinga",
+  "Mountain Province",
+];
+
+/** Well-known places outside the service area, so the AI can say "we don't deliver there" instead of guessing. */
+const OUTSIDE_SERVICE_AREA = [
   "Quezon City",
   "Makati",
   "Pasig",
@@ -205,7 +255,6 @@ export const PH_LOCATIONS = [
   "Antipolo",
   "Cainta",
   "Taytay",
-  "San Mateo",
   "Rodriguez",
   "Bulacan",
   "Malolos",
@@ -220,6 +269,14 @@ export const PH_LOCATIONS = [
   "Cebu City",
   "Davao City",
 ];
+
+export const PH_LOCATIONS = [...SERVICE_PROVINCES, ...Object.keys(TOWN_PROVINCE), ...OUTSIDE_SERVICE_AREA];
+
+/** True when a city/town/province is covered by the seller's delivery areas (a town counts via its province). */
+export function isInDeliveryArea(location: string | undefined, deliveryAreas: string[]) {
+  if (!location) return false;
+  return deliveryAreas.includes(location) || deliveryAreas.includes(TOWN_PROVINCE[location] ?? "");
+}
 
 export const MEDICAL_ADVICE_NOTICE =
   "Please consult a qualified healthcare professional for medical advice.";
