@@ -12,93 +12,32 @@ const PERSONAL_CARE_NOTICE =
 
 const PACKAGING_REF = { label: "Registration details", value: "Refer to official product packaging" };
 
+/** Official DXN packshots, trimmed and centred on white (public/products). */
 const IMAGES: Record<string, string[]> = {
-  "lingzhi-black-coffee": [
-    "https://f.nooncdn.com/p/pzsku/Z808B55B620DFD6B2C44FZ/45/1758031984/a129f008-d4b4-46e1-a071-fe45441802a5.jpg",
-    "https://f.nooncdn.com/p/pzsku/ZBD0E90B59FBF314FFEC9Z/45/1746876270/3a103547-78fd-4cd2-8894-08c7a82a8461.jpg",
-    "https://f.nooncdn.com/p/pzsku/ZBD0E90B59FBF314FFEC9Z/45/1746876270/dc12febd-4f38-4bfa-829c-b90c1aab3bcc.jpg",
-    "https://f.nooncdn.com/p/pzsku/ZBD0E90B59FBF314FFEC9Z/45/1746876270/8729cc4a-4e7c-46de-836c-032183d907e8.jpg",
-  ],
-  "lingzhi-coffee-3-in-1": [
-    "https://i.ebayimg.com/images/g/AwoAAeSwd5NpDPNM/s-l1200.jpg",
-    "https://f.nooncdn.com/p/pzsku/ZC89493635C506AD5CC61Z/45/1747317842/c878cf79-77e1-47d3-9bc4-f493ab6de760.jpg",
-    "https://f.nooncdn.com/p/pzsku/ZC4F00930F52ABD299812Z/45/_/1734263642/d7b61234-cb9e-4749-858c-fa6e1e3a30fa.jpg",
-  ],
-  "lingzhi-coffee-3-in-1-12g": [
-    "https://i.ebayimg.com/images/g/AwoAAeSwd5NpDPNM/s-l1200.jpg",
-    "https://f.nooncdn.com/p/pzsku/ZC89493635C506AD5CC61Z/45/1747317842/c878cf79-77e1-47d3-9bc4-f493ab6de760.jpg",
-    "https://f.nooncdn.com/p/pzsku/ZC4F00930F52ABD299812Z/45/_/1734263642/d7b61234-cb9e-4749-858c-fa6e1e3a30fa.jpg",
-  ],
-  "lingzhi-coffee-3-in-1-10-5g": [
-    "https://i.ebayimg.com/images/g/AwoAAeSwd5NpDPNM/s-l1200.jpg",
-    "https://f.nooncdn.com/p/pzsku/ZC89493635C506AD5CC61Z/45/1747317842/c878cf79-77e1-47d3-9bc4-f493ab6de760.jpg",
-    "https://f.nooncdn.com/p/pzsku/ZC4F00930F52ABD299812Z/45/_/1734263642/d7b61234-cb9e-4749-858c-fa6e1e3a30fa.jpg",
-  ],
-  "lions-mane-coffee": [
-    "https://beatusnatura.com/531-large_default/lion-s-mane-coffee.jpg",
-    "https://beatusnatura.com/532-large_default/lion-s-mane-coffee.jpg",
-  ],
-  "cocozhi-cocoa-drink": [
-    "https://beatusnatura.com/223-large_default/chokolate-drink-dxn.jpg",
-    "https://beatusnatura.com/224-large_default/chokolate-drink-dxn.jpg",
-    "https://beatusnatura.com/225-large_default/chokolate-drink-dxn.jpg",
-  ],
-  "cocozhi-cocoa-drink-10": [
-    "https://beatusnatura.com/223-large_default/chokolate-drink-dxn.jpg",
-    "https://beatusnatura.com/224-large_default/chokolate-drink-dxn.jpg",
-    "https://beatusnatura.com/225-large_default/chokolate-drink-dxn.jpg",
-  ],
-  "lemonzhi": [
-    "https://beatusnatura.com/150-large_default/lemonzhi-dxn.jpg",
-    "https://beatusnatura.com/151-large_default/lemonzhi-dxn.jpg",
-    "https://beatusnatura.com/264-large_default/lemonzhi-dxn.jpg",
-  ],
-  "roselle-juice": [
-    "https://beatusnatura.com/379-large_default/dxn-roselle-juice.jpg",
-    "https://beatusnatura.com/380-large_default/dxn-roselle-juice.jpg",
-    "https://beatusnatura.com/540-large_default/dxn-roselle-juice.jpg",
-    "https://beatusnatura.com/541-large_default/dxn-roselle-juice.jpg",
-  ],
-  "zhi-mint-zip-lock": [
-    "https://beatusnatura.com/144-large_default/ZHI-MINT-PLUS-dxn.jpg",
-    "https://beatusnatura.com/145-large_default/ZHI-MINT-PLUS-dxn.jpg",
-    "https://beatusnatura.com/370-large_default/ZHI-MINT-PLUS-dxn.jpg",
-    "https://beatusnatura.com/371-large_default/ZHI-MINT-PLUS-dxn.jpg",
-  ],
-  "zhi-mint-3-pack": [
-    "https://beatusnatura.com/144-large_default/ZHI-MINT-PLUS-dxn.jpg",
-    "https://beatusnatura.com/145-large_default/ZHI-MINT-PLUS-dxn.jpg",
-    "https://beatusnatura.com/370-large_default/ZHI-MINT-PLUS-dxn.jpg",
-    "https://beatusnatura.com/371-large_default/ZHI-MINT-PLUS-dxn.jpg",
-  ],
-  "zhi-mint-24-packs": [
-    "https://beatusnatura.com/144-large_default/ZHI-MINT-PLUS-dxn.jpg",
-    "https://beatusnatura.com/145-large_default/ZHI-MINT-PLUS-dxn.jpg",
-    "https://beatusnatura.com/370-large_default/ZHI-MINT-PLUS-dxn.jpg",
-    "https://beatusnatura.com/371-large_default/ZHI-MINT-PLUS-dxn.jpg",
-  ],
-  "ganozhi-soap": [
-    "https://beatusnatura.com/403-large_default/soap-dxn.jpg",
-    "https://beatusnatura.com/404-large_default/soap-dxn.jpg",
-  ],
-  "ganozhi-shampoo": [
-    "https://beatusnatura.com/401-large_default/ganozhi-shampoo-250-ml.jpg",
-    "https://beatusnatura.com/402-large_default/ganozhi-shampoo-250-ml.jpg",
-    "https://beatusnatura.com/505-large_default/ganozhi-shampoo-250-ml.jpg",
-  ],
-  "ganozhi-shampoo-100": [
-    "https://beatusnatura.com/401-large_default/ganozhi-shampoo-250-ml.jpg",
-    "https://beatusnatura.com/402-large_default/ganozhi-shampoo-250-ml.jpg",
-    "https://beatusnatura.com/505-large_default/ganozhi-shampoo-250-ml.jpg",
-  ],
-  "ganozhi-toothpaste": [
-    "https://beatusnatura.com/405-large_default/toothpaste-ganozhi-dxn.jpg",
-    "https://beatusnatura.com/406-large_default/toothpaste-ganozhi-dxn.jpg",
-  ],
-  "ganozhi-toothpaste-75": [
-    "https://beatusnatura.com/405-large_default/toothpaste-ganozhi-dxn.jpg",
-    "https://beatusnatura.com/406-large_default/toothpaste-ganozhi-dxn.jpg",
-  ],
+  "lingzhi-black-coffee": ["/products/lingzhi-black-coffee.webp", "/products/lingzhi-black-coffee-sachet.webp", "/products/lingzhi-black-coffee-back.webp"],
+  "lingzhi-coffee-3-in-1": ["/products/lingzhi-3-in-1.webp", "/products/lingzhi-3-in-1-sachet.webp", "/products/lingzhi-3-in-1-back.webp"],
+  "lingzhi-coffee-3-in-1-12g": ["/products/lingzhi-3-in-1.webp", "/products/lingzhi-3-in-1-sachet.webp", "/products/lingzhi-3-in-1-back.webp"],
+  "lingzhi-coffee-3-in-1-10-5g": ["/products/lingzhi-3-in-1.webp", "/products/lingzhi-3-in-1-sachet.webp", "/products/lingzhi-3-in-1-back.webp"],
+  "lingzhi-coffee-3-in-1-classic": ["/products/lingzhi-3-in-1-classic.webp", "/products/lingzhi-3-in-1-classic-sachet.webp", "/products/lingzhi-3-in-1-classic-back.webp"],
+  "lingzhi-coffee-3-in-1-classic-10": ["/products/lingzhi-3-in-1-classic.webp", "/products/lingzhi-3-in-1-classic-sachet.webp", "/products/lingzhi-3-in-1-classic-back.webp"],
+  "cordyceps-coffee-4-in-1": ["/products/cordyceps-coffee.webp", "/products/cordyceps-coffee-sachet.webp", "/products/cordyceps-coffee-back.webp"],
+  "lions-mane-coffee": ["/products/lions-mane-coffee.webp", "/products/lions-mane-coffee-sachet.webp", "/products/lions-mane-coffee-back.webp"],
+  "cocozhi-cocoa-drink": ["/products/cocozhi.webp", "/products/cocozhi-sachet.webp", "/products/cocozhi-back.webp"],
+  "cocozhi-cocoa-drink-10": ["/products/cocozhi.webp", "/products/cocozhi-sachet.webp", "/products/cocozhi-back.webp"],
+  lemonzhi: ["/products/lemonzhi.webp", "/products/lemonzhi-sachet.webp", "/products/lemonzhi-back.webp"],
+  "roselle-juice": ["/products/roselle-juice.webp", "/products/roselle-juice-side.webp", "/products/roselle-juice-box.webp"],
+  "himalayan-salt": ["/products/himalayan-salt.webp", "/products/himalayan-salt-powder.webp", "/products/himalayan-salt-back.webp"],
+  "zhi-mint-zip-lock": ["/products/zhi-mint-sachet.webp"],
+  "zhi-mint-3-pack": ["/products/zhi-mint-sachet.webp", "/products/zhi-mint-box-front.webp"],
+  "zhi-mint-24-packs": ["/products/zhi-mint-box.webp", "/products/zhi-mint-box-front.webp", "/products/zhi-mint-sachet.webp"],
+  "ganozhi-toothpaste": ["/products/ganozhi-toothpaste-150.webp", "/products/ganozhi-toothpaste-150-side.webp", "/products/ganozhi-toothpaste-150-back.webp"],
+  "ganozhi-toothpaste-75": ["/products/ganozhi-toothpaste-75.webp", "/products/ganozhi-toothpaste-75-back.webp"],
+  "ganozhi-soap": ["/products/ganozhi-soap.webp", "/products/ganozhi-soap-front.webp", "/products/ganozhi-soap-back.webp"],
+  "ganozhi-shampoo": ["/products/ganozhi-shampoo-250.webp", "/products/ganozhi-shampoo-250-back.webp"],
+  "ganozhi-shampoo-100": ["/products/ganozhi-shampoo-100.webp", "/products/ganozhi-shampoo-100-side.webp"],
+  "chubby-baby-oil": ["/products/chubby-baby-oil.webp", "/products/chubby-baby-oil-back.webp"],
+  "ganozhi-massage-oil": ["/products/ganozhi-massage-oil.webp", "/products/ganozhi-massage-oil-bottle.webp"],
+  "talcum-powder": ["/products/talcum-powder.webp", "/products/talcum-powder-back.webp"],
 };
 
 type Seed = Omit<Product, "id" | "shippingInfo" | "archived" | "approvedForAI" | "createdAt" | "updatedAt"> &
@@ -156,7 +95,7 @@ const seeds: Seed[] = [
   },
   {
     slug: "lingzhi-coffee-3-in-1",
-    name: "Lingzhi Coffee 3-in-1",
+    name: "Lingzhi Coffee 3-in-1 (21 g)",
     category: "coffee",
     price: 955,
     unit: "Box of 20 sachets (21g each)",
@@ -362,7 +301,7 @@ const seeds: Seed[] = [
   // ───────── Beverages ─────────
   {
     slug: "cocozhi-cocoa-drink",
-    name: "Cocozhi Cocoa Drink",
+    name: "Cocozhi Cocoa Drink (20 sachets)",
     category: "beverages",
     price: 1300,
     unit: "Box of 20 sachets (32g each)",
@@ -591,7 +530,7 @@ const seeds: Seed[] = [
   // ───────── Personal care ─────────
   {
     slug: "ganozhi-toothpaste",
-    name: "Ganozhi Toothpaste",
+    name: "Ganozhi Toothpaste (150 g)",
     category: "personal-care",
     price: 500,
     unit: "Tube, 150 g",

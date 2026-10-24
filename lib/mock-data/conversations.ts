@@ -44,7 +44,7 @@ export const conversations: Conversation[] = [
         intent: "buy_product", confidence: 0.91, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1"],
         quantity: 3, location: "Quezon City", leadScore: 83, nextAction: "capture_contact",
       })),
-      msg("assistant", "Great, we deliver to Quezon City. For 3 boxes the reference total is ₱1,950 before delivery. The seller will confirm the final amount and schedule. May I have your name and mobile number so the seller can reach you?", 209),
+      msg("assistant", "Great, we deliver to Quezon City. For 3 boxes the reference total is ₱2,865 before delivery. The seller will confirm the final amount and schedule. May I have your name and mobile number so the seller can reach you?", 209),
       msg("customer", "Kristine, 0917 123 4567. Magkano delivery fee?", 192, a({
         intent: "shipping_inquiry", confidence: 0.88, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1"],
         quantity: 3, location: "Quezon City", leadScore: 87, nextAction: "create_order_inquiry",

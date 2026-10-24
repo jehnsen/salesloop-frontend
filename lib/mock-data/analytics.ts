@@ -81,10 +81,10 @@ export const leadSourceWeights: { source: string; weight: number; conversion: nu
 ];
 
 export const productInterestWeights: CategoryValue[] = [
-  { name: "Lingzhi Coffee 3-in-1", value: 0.27 },
+  { name: "Lingzhi Coffee 3-in-1 (21 g)", value: 0.27 },
   { name: "Lingzhi Black Coffee", value: 0.18 },
   { name: "Lingzhi 3-in-1 Classic", value: 0.13 },
-  { name: "Cocozhi Cocoa Drink", value: 0.12 },
+  { name: "Cocozhi Cocoa Drink (20 sachets)", value: 0.12 },
   { name: "Lion's Mane Coffee", value: 0.1 },
   { name: "Cordyceps Coffee", value: 0.09 },
   { name: "Personal Care", value: 0.07 },

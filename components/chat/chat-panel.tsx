@@ -1,8 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Code2, RotateCcw, SendHorizonal, X } from "lucide-react";
-import type { AIAnalysis } from "@/types";
+import { RotateCcw, SendHorizonal, X } from "lucide-react";
 import { siteConfig } from "@/lib/mock-data/site";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -10,39 +9,8 @@ import { AIAvatar, AIDisclaimer, ChatBubble, QuickActions, TypingIndicator } fro
 import { ChatAttachments } from "./chat-attachments";
 import { DEFAULT_QUICK_ACTIONS, useChat } from "./chat-provider";
 
-/** Hidden AI metadata inspector: only rendered when NEXT_PUBLIC_AI_DEBUG=true (default in `next dev`). */
-const AI_DEBUG = process.env.NEXT_PUBLIC_AI_DEBUG === "true";
-
-function AnalysisInspector({ analysis }: { analysis: AIAnalysis }) {
-  return (
-    <details className="w-full max-w-xs rounded-lg border border-dashed border-info/40 bg-info-soft/40 text-[11px]">
-      <summary className="flex cursor-pointer items-center gap-1 px-2 py-1 font-medium text-info">
-        <Code2 className="size-3" aria-hidden /> AI analysis (dev only)
-      </summary>
-      <pre className="overflow-x-auto px-2 pb-2 font-mono leading-relaxed text-foreground">
-        {JSON.stringify(
-          {
-            intent: analysis.intent,
-            product: analysis.products[0],
-            quantity: analysis.quantity,
-            location: analysis.location,
-            purchaseIntent: analysis.purchaseIntent,
-            leadScore: analysis.leadScore,
-            nextAction: analysis.nextAction,
-            confidence: analysis.confidence,
-            ...(analysis.medicalFlag ? { medicalFlag: true } : {}),
-            ...(analysis.escalate ? { escalate: true } : {}),
-          },
-          null,
-          2,
-        )}
-      </pre>
-    </details>
-  );
-}
-
 export function ChatPanel({ variant = "widget", className }: { variant?: "widget" | "page"; className?: string }) {
-  const { messages, pending, send, closeChat, analyses, reset, agentActive } = useChat();
+  const { messages, pending, send, closeChat, reset, agentActive } = useChat();
   const [draft, setDraft] = React.useState("");
   const listRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
@@ -96,7 +64,6 @@ export function ChatPanel({ variant = "widget", className }: { variant?: "widget
         {messages.map((m) => (
           <ChatBubble key={m.id} message={m}>
             {m.attachments?.length ? <ChatAttachments attachments={m.attachments} isLatest={m.id === lastId} /> : null}
-            {AI_DEBUG && m.role === "customer" && analyses[m.id] ? <AnalysisInspector analysis={analyses[m.id]} /> : null}
           </ChatBubble>
         ))}
         {pending && <TypingIndicator />}

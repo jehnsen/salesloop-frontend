@@ -15,7 +15,7 @@ npm run typecheck  # tsc --noEmit
 ```
 
 - Customer site: `/`
-- Seller admin: `/admin` (redirects to `/login`; sample credentials are shown on the login page: `seller@luntianwellness.example` / `Salesloop#2026`)
+- Seller admin: `/admin` (redirects to `/login`; sample credentials are shown on the login page: `admin@salesloop.com` / `Salesloop@2026`)
 
 Stack: Next.js 15 (App Router), React 19, TypeScript (strict), Tailwind CSS v4, Radix UI primitives (shadcn-style components in `components/ui`), Lucide icons, Recharts, Sonner toasts.
 
@@ -92,7 +92,7 @@ interface AIAnalysis {
 
 - It answers **only from approved product data** (price, stock status, ingredients, preparation). Products not marked *Approved for AI* are refused and escalated.
 - Admin controls take effect in the chat: capabilities, guardrails, pausing the agent, and **Assist Only** autonomy (the customer gets a holding reply and the AI answer waits in the inbox as a draft).
-- AI metadata is **hidden from customers**. It appears in the admin inbox, lead pages, and the AI Agent test sandbox. In `next dev`, a collapsible "AI analysis (dev only)" inspector also shows under chat messages (`NEXT_PUBLIC_AI_DEBUG=true` in `.env.development`; production builds hide it).
+- AI metadata is **hidden from customers**. It appears in the admin inbox, lead pages, and the AI Agent test sandbox.
 
 ## Compliance
 

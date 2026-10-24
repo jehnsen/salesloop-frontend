@@ -56,6 +56,7 @@ function ProductMiniList({ products }: { products: Product[] }) {
             <ProductImage src={p.images?.[0]} visual={p.visual} tone={p.tone} name={p.name} className="aspect-[4/3]" />
             <div className="space-y-1 p-2.5">
               <p className="line-clamp-2 text-xs leading-snug font-medium">{p.name}</p>
+              <p className="line-clamp-1 text-[11px] text-muted-foreground">{p.unit}</p>
               <p className="text-xs font-semibold text-primary">{formatPeso(p.price)}</p>
             </div>
           </Link>

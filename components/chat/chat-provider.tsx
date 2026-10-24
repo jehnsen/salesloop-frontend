@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import type { AIAnalysis, ChatMessage, ContactChannel, Product } from "@/types";
+import type { ChatMessage, ContactChannel, Product } from "@/types";
 import {
   getAgentStatus,
   getProductGreeting,
@@ -13,7 +13,8 @@ import {
 import { getAllProducts } from "@/services/products";
 import { createId } from "@/lib/utils";
 
-const STORAGE_KEY = "likas-chat-session-v1";
+const STORAGE_KEY = "likas-chat-session-v2";
+const GREETING_ID = "msg_greeting";
 
 export const DEFAULT_QUICK_ACTIONS = [
   "Recommend a coffee",
@@ -27,7 +28,6 @@ interface StoredSession {
   sessionId: string;
   messages: ChatMessage[];
   state: ChatSessionState;
-  analyses: Record<string, AIAnalysis>;
 }
 
 interface ChatContextValue {
@@ -40,8 +40,6 @@ interface ChatContextValue {
   submitLead: (form: { name: string; mobile: string; preferredChannel: ContactChannel }) => Promise<void>;
   state: ChatSessionState;
   products: Product[];
-  /** Internal AI analysis per customer message id. Only rendered in dev debug mode. */
-  analyses: Record<string, AIAnalysis>;
   agentActive: boolean;
   reset: () => void;
 }
@@ -58,11 +56,10 @@ function newSession(greeting?: string): StoredSession {
   return {
     sessionId: createId("chat"),
     state: initialSessionState,
-    analyses: {},
     messages: greeting
       ? [
           {
-            id: createId("msg"),
+            id: GREETING_ID,
             role: "assistant",
             message: greeting,
             timestamp: new Date().toISOString(),
@@ -112,7 +109,13 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
       greetingRef.current = status.greeting;
       const stored = readStored();
       hydrated.current = true;
-      setSession(stored?.messages.length ? stored : newSession(status.greeting));
+      if (stored?.messages.length) {
+        // Keep the opening greeting in sync with the current agent settings (e.g. a store rename).
+        const messages = stored.messages.map((m) => (m.id === GREETING_ID && status.greeting ? { ...m, message: status.greeting } : m));
+        setSession({ ...stored, messages });
+      } else {
+        setSession(newSession(status.greeting));
+      }
     });
     return () => {
       cancelled = true;
@@ -137,7 +140,6 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
         setSession((s) => ({
           ...s,
           state: result.state,
-          analyses: { ...s.analyses, [localId]: result.analysis },
           messages: [...s.messages, result.reply],
         }));
       } catch {
@@ -208,7 +210,6 @@ export function ChatProvider({ children }: { children: React.ReactNode }) {
       submitLead,
       state: session.state,
       products,
-      analyses: session.analyses,
       agentActive,
       reset,
     }),

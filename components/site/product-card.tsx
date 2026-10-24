@@ -36,6 +36,7 @@ export function ProductCard({ product, className, priority }: { product: Product
               {product.name}
             </Link>
           </h3>
+          <p className="text-xs font-medium text-foreground/75">{product.unit}</p>
           <p className="line-clamp-2 text-sm text-muted-foreground">{product.summary}</p>
         </div>
         <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-border/70 pt-4">

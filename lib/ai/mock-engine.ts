@@ -519,7 +519,7 @@ export function composeReply(text: string, state: ChatSessionState, ctx: EngineC
         message = "Which product would you like me to check? Here are some popular ones:";
         attachments.push(productCardsFor(ctx.products));
       } else {
-        message = "Happy to help you choose! Do you prefer your coffee plain and bold, creamy and a bit sweet, or milky and mild? If you'd rather skip coffee, we also have cocoa and tea.";
+        message = "Happy to help you choose! Do you prefer your coffee plain and bold, creamy and a bit sweet, or milky and mild? If you'd rather skip coffee, we also have cocoa, lemon, and roselle drinks.";
         attachments.push(productCardsFor(ctx.products, ["lingzhi-black-coffee", "lingzhi-coffee-3-in-1", "lingzhi-coffee-3-in-1-classic", "cocozhi-cocoa-drink"]));
         suggestions = ["Not too sweet", "Creamy", "Milky", "No coffee please"];
       }
