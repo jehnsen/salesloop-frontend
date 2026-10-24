@@ -89,22 +89,19 @@ export interface Testimonial {
   productSlug?: string;
 }
 
-/** One slide of the homepage hero video carousel. */
+/** One slide of the homepage hero image carousel. The headline and button are part of the artwork. */
 export interface HeroSlide {
   id: string;
-  /** Short name shown in the slide picker. */
+  /** Short name used by the slide picker and screen readers. */
   label: string;
-  eyebrow: string;
-  title: string;
-  /** Second headline line, set in gold italics. */
-  highlight: string;
-  description: string;
-  /** Self-hosted, muted background clip and the still shown before it loads. */
-  video: string;
-  poster: string;
-  primary: { label: string; href: string };
-  /** Either a link or a prompt that opens the AI assistant. */
-  secondary: { label: string; href?: string; aiPrompt?: string };
+  /** Banner artwork in /public. */
+  image: string;
+  /** What the banner says, for screen readers (the text is drawn into the image). */
+  alt: string;
+  /** Where the whole banner links to. */
+  href: string;
+  /** CSS object-position that keeps the artwork's text in frame when it is cropped: phones, then wider screens. */
+  focus: { mobile: string; desktop: string };
 }
 
 export interface StoreFAQ {

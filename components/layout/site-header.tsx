@@ -21,8 +21,8 @@ import { Logo } from "./brand";
 const NAV = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
-  { href: "/blog", label: "Learn" },
-  { href: "/about", label: "About" },
+  // { href: "/blog", label: "Learn" },
+  // { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 

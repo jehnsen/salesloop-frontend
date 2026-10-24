@@ -22,8 +22,8 @@ const COLUMNS = [
   {
     title: "About",
     links: [
-      { href: "/about", label: "About the seller" },
-      { href: "/blog", label: "Learn" },
+      // { href: "/about", label: "About the seller" },
+      // { href: "/blog", label: "Learn" },
       { href: "/privacy", label: "Privacy policy" },
       { href: "/terms", label: "Terms" },
       { href: "/disclaimer", label: "Disclaimer" },

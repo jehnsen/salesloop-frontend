@@ -10,7 +10,7 @@ const ASSURANCES = [
   { icon: MessageCircleQuestion, label: "Personal help, always" },
 ];
 
-/** Homepage hero: the video carousel plus the assurance strip beneath it. */
+/** Homepage hero: the banner carousel plus the assurance strip beneath it. */
 export function HomeHero({ slides }: { slides: HeroSlide[] }) {
   return (
     <>

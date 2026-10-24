@@ -33,8 +33,8 @@ export default async function HomePage() {
         </Container>
       </section>
       <HowOrderingWorks />
-      <Testimonials testimonials={testimonials} />
-      <LatestArticles posts={posts} />
+      {/* <Testimonials testimonials={testimonials} /> */}
+      {/* <LatestArticles posts={posts} /> */}
       <FinalCTA />
     </>
   );

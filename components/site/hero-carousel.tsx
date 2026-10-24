@@ -1,43 +1,30 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import type { HeroSlide } from "@/types";
+import { siteConfig } from "@/lib/mock-data/site";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { AskAIButton } from "@/components/chat/ask-ai-button";
-import { Container } from "@/components/layout/page-primitives";
 
-/** How long each slide stays up before advancing. */
-const SLIDE_MS = 8000;
-
-const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
-
-/** True when the visitor asked for less data, or is on a connection too slow for background video. */
-function prefersLightweight() {
-  const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
-  return Boolean(connection?.saveData) || ["slow-2g", "2g"].includes(connection?.effectiveType ?? "");
-}
+/** How long each banner stays up before advancing. */
+const SLIDE_MS = 6000;
 
 /**
- * Full-bleed hero carousel of short, muted background clips.
+ * Full-width banner carousel. The headline and button are drawn into each image, so a slide is one link.
  *
- * - Only the active clip plays; the others are attached lazily, so the first paint is just a poster image.
- * - Auto-advances every SLIDE_MS, pausing while the visitor hovers the copy, focuses a control, or presses pause.
- * - Reduced motion: nothing moves until the visitor presses play. Save-Data / 2G: posters only.
+ * - Auto-advances every SLIDE_MS, pausing while the visitor hovers a banner, focuses a control, or presses pause.
+ * - Reduced motion: nothing moves until the visitor presses play.
+ * - Phones show a 4:3 crop anchored on each banner's text; wider screens show the full-width banner.
  */
 export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
   const count = slides.length;
   const [index, setIndex] = React.useState(0);
   const [playing, setPlaying] = React.useState(false);
   const [held, setHeld] = React.useState(false);
-  const [allowVideo, setAllowVideo] = React.useState(false);
-  /** Slides whose video file has been requested. */
-  const [attached, setAttached] = React.useState<number[]>([]);
 
   const rootRef = React.useRef<HTMLElement>(null);
-  const videoRefs = React.useRef<(HTMLVideoElement | null)[]>([]);
   const barRefs = React.useRef<(HTMLSpanElement | null)[]>([]);
   const elapsed = React.useRef(0);
   const touchStart = React.useRef<number | null>(null);
@@ -50,35 +37,10 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
     [count],
   );
 
-  // Decide after mount: the server can't know motion or data preferences.
+  // Decide after mount: the server can't know the motion preference.
   React.useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setAllowVideo(!prefersLightweight());
-    setPlaying(!reduced);
+    setPlaying(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
-
-  // Attach the active clip now and the next one shortly after, so the cross-fade lands on moving video.
-  React.useEffect(() => {
-    if (!allowVideo) return;
-    setAttached((list) => (list.includes(index) ? list : [...list, index]));
-    const next = (index + 1) % count;
-    const timer = window.setTimeout(() => setAttached((list) => (list.includes(next) ? list : [...list, next])), 2500);
-    return () => window.clearTimeout(timer);
-  }, [allowVideo, index, count]);
-
-  // Play only the active clip.
-  React.useEffect(() => {
-    videoRefs.current.forEach((video, i) => {
-      if (!video) return;
-      if (i === index && playing && allowVideo && attached.includes(i)) {
-        video.muted = true;
-        void video.play().catch(() => undefined);
-      } else {
-        video.pause();
-        if (i !== index) video.currentTime = 0;
-      }
-    });
-  }, [index, playing, allowVideo, attached]);
 
   // Progress + auto-advance. requestAnimationFrame stops in background tabs, so the timer does too.
   const running = playing && !held;
@@ -107,7 +69,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
       ref={rootRef}
       aria-roledescription="carousel"
       aria-label="Featured collections"
-      className="botanical-hero relative isolate h-[640px] overflow-hidden text-white sm:h-[660px] lg:h-[min(82vh,760px)] lg:min-h-[600px]"
+      className="relative isolate aspect-4/3 overflow-hidden bg-surface sm:aspect-7/3"
       onKeyDown={(e) => {
         if (e.key === "ArrowRight") go(index + 1);
         if (e.key === "ArrowLeft") go(index - 1);
@@ -130,9 +92,12 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
         go(index + (end < start ? 1 : -1));
       }}
     >
+      <h1 className="sr-only">
+        {siteConfig.storeName}: {siteConfig.tagline}
+      </h1>
+
       {slides.map((slide, i) => {
         const active = i === index;
-        const Heading = i === 0 ? "h1" : "h2";
         return (
           <div
             key={slide.id}
@@ -142,123 +107,73 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
             aria-hidden={!active}
             inert={!active}
             data-active={active}
-            className="hero-slide absolute inset-0"
+            className="absolute inset-0 invisible opacity-0 transition-[opacity,visibility] duration-700 data-[active=true]:visible data-[active=true]:opacity-100"
+            {...hold}
           >
-            <div className="hero-media absolute inset-0">
-              <video
-                ref={(el) => {
-                  videoRefs.current[i] = el;
-                }}
-                src={attached.includes(i) ? slide.video : undefined}
-                poster={slide.poster}
-                muted
-                loop
-                playsInline
-                preload="auto"
-                disablePictureInPicture
-                tabIndex={-1}
-                aria-hidden
-                className="size-full object-cover"
+            <Link href={slide.href} aria-label={slide.alt} className="absolute inset-0 block focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-primary">
+              <Image
+                src={slide.image}
+                alt=""
+                fill
+                priority={i === 0}
+                sizes="100vw"
+                className="object-cover [object-position:var(--focus-m)] sm:[object-position:var(--focus-d)]"
+                style={{ "--focus-m": slide.focus.mobile, "--focus-d": slide.focus.desktop } as React.CSSProperties}
               />
-            </div>
-            <div className="hero-scrim absolute inset-0" aria-hidden />
-            <Container className="relative flex h-full items-end pb-36 lg:items-center lg:pb-24">
-              <div className="max-w-xl" {...hold}>
-                <p className="hero-rise mb-6 inline-flex items-center gap-2.5 text-[10px] font-medium tracking-[0.22em] text-sage uppercase sm:text-xs">
-                  <span className="hero-rule h-px w-7 bg-gold" style={delay(250)} aria-hidden /> {slide.eyebrow}
-                </p>
-                <Heading className="font-display text-[clamp(2.6rem,5.4vw,5rem)] leading-[1.04] font-normal tracking-[-0.045em]">
-                  <span className="hero-line">
-                    <span style={delay(120)}>{slide.title}</span>
-                  </span>
-                  <span className="hero-line">
-                    <span style={delay(260)}>
-                      <span className="hero-shimmer font-light italic">{slide.highlight}</span>
-                    </span>
-                  </span>
-                </Heading>
-                <p className="hero-rise mt-6 max-w-md text-base leading-relaxed text-white/80 sm:text-lg" style={delay(480)}>
-                  {slide.description}
-                </p>
-                <div className="hero-rise mt-8 flex flex-col gap-3 sm:flex-row" style={delay(620)}>
-                  <Button
-                    size="lg"
-                    variant="gold"
-                    asChild
-                    className="hero-cta [&_svg]:transition-transform [&_svg]:duration-300 hover:[&_svg]:translate-x-0.5 hover:[&_svg]:-translate-y-0.5"
-                  >
-                    <Link href={slide.primary.href}>
-                      {slide.primary.label} <ArrowUpRight aria-hidden />
-                    </Link>
-                  </Button>
-                  {slide.secondary.href ? (
-                    <Button size="lg" variant="outline" asChild className="border-white/30 bg-white/5 text-white backdrop-blur-sm hover:border-white/60 hover:bg-white/15">
-                      <Link href={slide.secondary.href}>{slide.secondary.label}</Link>
-                    </Button>
-                  ) : (
-                    <AskAIButton
-                      size="lg"
-                      variant="outline"
-                      prompt={slide.secondary.aiPrompt}
-                      className="border-white/30 bg-white/5 text-white backdrop-blur-sm hover:border-white/60 hover:bg-white/15"
-                    >
-                      {slide.secondary.label}
-                    </AskAIButton>
-                  )}
-                </div>
-              </div>
-            </Container>
+            </Link>
           </div>
         );
       })}
 
-      <div className="absolute inset-x-0 bottom-0 z-10 pb-6 sm:pb-8" {...hold}>
-        {/* Controls stay left: the bottom-right corner belongs to the floating chat button. */}
-        <Container className="flex items-end gap-3 sm:gap-5">
-          <ControlButton label={playing ? "Pause slideshow" : "Play slideshow"} onClick={() => setPlaying((p) => !p)}>
-            {playing ? <Pause className="size-4" aria-hidden /> : <Play className="size-4" aria-hidden />}
-          </ControlButton>
-          <div className="flex max-w-xl flex-1 gap-3 sm:gap-5">
-            {slides.map((slide, i) => (
-              <button
-                key={slide.id}
-                type="button"
-                onClick={() => go(i)}
-                aria-label={`Show slide ${i + 1}: ${slide.label}`}
-                aria-current={i === index ? "true" : undefined}
-                className="group flex-1 py-2 text-left"
-              >
-                <span className="block h-0.5 w-full overflow-hidden rounded-full bg-white/25">
-                  <span
-                    ref={(el) => {
-                      barRefs.current[i] = el;
-                    }}
-                    className="hero-progress-fill block h-full rounded-full bg-gold"
-                    // The active bar is driven by the animation frame loop above, not by React.
-                    style={i === index ? undefined : { transform: `scaleX(${i < index ? 1 : 0})` }}
-                  />
-                </span>
-                <span
-                  className={cn(
-                    "mt-3 flex items-baseline gap-2 text-xs transition-colors",
-                    i === index ? "text-white" : "text-white/60 group-hover:text-white/90",
-                  )}
-                >
-                  <span className="tracking-[0.14em] tabular-nums">0{i + 1}</span>
-                  <span className="hidden font-medium sm:inline">{slide.label}</span>
-                </span>
-              </button>
-            ))}
-          </div>
-          <div className="hidden shrink-0 items-center gap-2 sm:flex">
-            <ControlButton label="Previous slide" onClick={() => go(index - 1)}>
+      {count > 1 && (
+        <>
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden items-center pl-4 sm:flex lg:pl-6">
+            <ControlButton label="Previous slide" onClick={() => go(index - 1)} {...hold}>
               <ChevronLeft className="size-5" aria-hidden />
             </ControlButton>
-            <ControlButton label="Next slide" onClick={() => go(index + 1)}>
+          </div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden items-center pr-4 sm:flex lg:pr-6">
+            <ControlButton label="Next slide" onClick={() => go(index + 1)} {...hold}>
               <ChevronRight className="size-5" aria-hidden />
             </ControlButton>
           </div>
-        </Container>
+        </>
+      )}
+
+      {/* Bottom-left sits over blurred foliage in every banner; the bottom-right corner belongs to the floating chat button. */}
+      <div className="absolute bottom-3 left-3 z-10 flex items-center gap-2 rounded-full bg-black/35 py-1 pr-3 pl-1 backdrop-blur-sm sm:bottom-5 sm:left-6 lg:left-8" {...hold}>
+        <button
+          type="button"
+          aria-label={playing ? "Pause slideshow" : "Play slideshow"}
+          title={playing ? "Pause slideshow" : "Play slideshow"}
+          onClick={() => setPlaying((p) => !p)}
+          className="flex size-7 items-center justify-center rounded-full text-white transition-colors hover:bg-white/20"
+        >
+          {playing ? <Pause className="size-3.5" aria-hidden /> : <Play className="size-3.5" aria-hidden />}
+        </button>
+        <div className="flex gap-2">
+          {slides.map((slide, i) => (
+            <button
+              key={slide.id}
+              type="button"
+              onClick={() => go(i)}
+              aria-label={`Show slide ${i + 1}: ${slide.label}`}
+              aria-current={i === index ? "true" : undefined}
+              className="group py-2"
+            >
+              <span className="block h-1 w-8 overflow-hidden rounded-full bg-white/40 sm:w-12">
+                <span
+                  ref={(el) => {
+                    barRefs.current[i] = el;
+                  }}
+                  className={cn("block h-full origin-left rounded-full bg-white", i !== index && "transition-none")}
+                  // The active bar is driven by the animation frame loop above, not by React.
+                  style={i === index ? undefined : { transform: `scaleX(${i < index ? 1 : 0})` }}
+                />
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Announce slide changes only when the visitor is driving. */}
@@ -269,14 +184,20 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
   );
 }
 
-function ControlButton({ label, onClick, children }: { label: string; onClick: () => void; children: React.ReactNode }) {
+function ControlButton({
+  label,
+  onClick,
+  children,
+  ...rest
+}: { label: string; onClick: () => void; children: React.ReactNode } & React.HTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       type="button"
       aria-label={label}
       title={label}
       onClick={onClick}
-      className="flex size-10 items-center justify-center rounded-full border border-white/30 bg-white/5 text-white backdrop-blur-sm transition-colors hover:border-white/60 hover:bg-white/15 sm:size-11"
+      className="pointer-events-auto flex size-10 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-sm transition-colors hover:bg-black/55 sm:size-11"
+      {...rest}
     >
       {children}
     </button>
