@@ -1,4 +1,5 @@
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -72,20 +73,30 @@ export function PageHero({
   description,
   children,
   className,
+  image,
 }: {
   eyebrow?: string;
   title: string;
   description?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
+  /** Optional photo behind the intro. Text stays on the left; keep that side of the photo light and open. */
+  image?: { src: string; position?: string };
 }) {
   return (
-    <section className={cn("border-b bg-surface", className)}>
-      <Container className="py-14 sm:py-20">
-        <div className="max-w-3xl space-y-3">
+    <section className={cn("relative isolate overflow-hidden border-b bg-surface", image && "flex min-h-88 items-center sm:min-h-112", className)}>
+      {image && (
+        <>
+          <Image src={image.src} alt="" fill priority sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: image.position ?? "75% 65%" }} />
+          {/* Keeps the text readable where the photo reaches the text column, mostly on small screens. */}
+          <div aria-hidden className="absolute inset-0 -z-10 bg-linear-to-r from-background/85 via-background/45 to-transparent max-sm:from-background/80 max-sm:via-background/70" />
+        </>
+      )}
+      <Container className={cn("py-14 sm:py-20", image && "relative")}>
+        <div className={cn("space-y-3", image ? "max-w-[26rem]" : "max-w-3xl")}>
           {eyebrow && <p className="text-xs font-semibold tracking-[0.14em] text-leaf uppercase">{eyebrow}</p>}
           <h1 className="font-display text-4xl font-normal tracking-[-0.035em] text-balance sm:text-6xl">{title}</h1>
-          {description && <p className="text-lg text-pretty text-muted-foreground">{description}</p>}
+          {description && <p className={cn("text-lg text-pretty text-muted-foreground", image && "text-foreground/75")}>{description}</p>}
           {children}
         </div>
       </Container>

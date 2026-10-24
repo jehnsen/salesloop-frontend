@@ -34,6 +34,7 @@ export default async function ProductsPage({
     <>
       <PageHero
         eyebrow="Shop"
+        image={{ src: "/images/products-hero.webp" }}
         title="All products"
         description="Reference prices shown. The seller confirms final amounts, availability, and delivery after you send an inquiry."
       />
