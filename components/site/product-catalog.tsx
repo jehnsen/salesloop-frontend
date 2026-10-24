@@ -134,7 +134,7 @@ export function ProductCatalog({
         <SearchInput
           value={searchText}
           onChange={setSearchText}
-          placeholder="Search coffee, soap, spirulina…"
+          placeholder="Search coffee, soap, lemonzhi…"
           label="Search products"
           className="md:max-w-sm md:flex-1"
         />

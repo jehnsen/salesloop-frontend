@@ -26,7 +26,7 @@ Stack: Next.js 15 (App Router), React 19, TypeScript (strict), Tailwind CSS v4, 
 3. Fill in the lead form in the chat, then click **Send order inquiry** (it arrives pre-filled) and submit.
 4. Open `/admin/leads`, `/admin/conversations`, and `/admin/orders`: the new lead, the mirrored chat with AI analysis, and the order inquiry are all there.
 
-Other phrases worth trying: `Ano difference ng black coffee at 3-in-1?`, `Pwede ba ang RG sa may diabetes?` (medical guardrail), `Talk to seller`, `Gusto ko ng refund` (complaint escalation), `Hindi ako mahilig sa matamis` (recommendation).
+Other phrases worth trying: `Ano difference ng black coffee at 3-in-1?`, `Pwede ba ang Lion's Mane Coffee sa may diabetes?` (medical guardrail), `Talk to seller`, `Gusto ko ng refund` (complaint escalation), `Hindi ako mahilig sa matamis` (recommendation).
 
 Admin changes, captured leads, and orders are saved in **your browser's localStorage**. Use *Settings → Reset demo data* (or the avatar menu) to start over.
 
@@ -96,7 +96,7 @@ interface AIAnalysis {
 
 ## Compliance
 
-- No cure/treat/prevent claims anywhere; supplements carry the PH "No approved therapeutic claims" notice.
+- No cure/treat/prevent claims anywhere; any food supplement added later must carry the PH "No approved therapeutic claims" notice.
 - Health questions trigger: *"Please consult a qualified healthcare professional for medical advice."* The product editor also warns when copy contains claim words.
 - The site states it is run by an independent distributor, not the official DXN website (footer, About, Terms, Disclaimer, editable in Settings).
 - Prices are labelled **reference prices**. There is no checkout: every order is an inquiry the seller confirms.

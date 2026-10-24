@@ -39,7 +39,7 @@ export const conversations: Conversation[] = [
         intent: "price_inquiry", confidence: 0.94, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1"],
         quantity: 3, leadScore: 74, nextAction: "ask_location",
       })),
-      msg("assistant", "We currently have Lingzhi Coffee 3-in-1 available at a reference price of ₱650 per box. You're considering 3 boxes—is that correct? I can also help check delivery availability. What city or municipality are you located in?", 239),
+      msg("assistant", "We currently have Lingzhi Coffee 3-in-1 available at a reference price of ₱955 per box. You're considering 3 boxes—is that correct? I can also help check delivery availability. What city or municipality are you located in?", 239),
       msg("customer", "Yes 3 boxes. Quezon City ako.", 210, a({
         intent: "buy_product", confidence: 0.91, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1"],
         quantity: 3, location: "Quezon City", leadScore: 83, nextAction: "capture_contact",
@@ -71,7 +71,7 @@ export const conversations: Conversation[] = [
         intent: "product_inquiry", confidence: 0.86, purchaseIntent: "medium", products: ["lingzhi-black-coffee"],
         leadScore: 68, nextAction: "recommend_product", objections: ["Doesn't like sweet coffee"],
       })),
-      msg("assistant", "If you prefer less sweet coffee, Lingzhi Black Coffee is a good fit. It has no sugar or creamer, so you can adjust it yourself. A box has 30 sachets at a reference price of ₱620.", 1259),
+      msg("assistant", "If you prefer less sweet coffee, Lingzhi Black Coffee is a good fit. It has no sugar or creamer, so you can adjust it yourself. A box has 20 sachets at a reference price of ₱980.", 1259),
       msg("customer", "Sige, pag-iisipan ko muna. Thanks!", 1200, a({
         intent: "general_question", confidence: 0.72, purchaseIntent: "medium", products: ["lingzhi-black-coffee"],
         leadScore: 72, nextAction: "answer_question", objections: ["Undecided"],
@@ -109,11 +109,11 @@ export const conversations: Conversation[] = [
     aiMode: "auto_reply",
     unread: 2,
     messages: [
-      msg("customer", "Pwede ba ang RG sa may high blood? May maintenance ako.", 132, a({
-        intent: "medical_question", confidence: 0.97, purchaseIntent: "low", products: ["rg-reishi-gano"],
+      msg("customer", "Pwede ba ang Lion's Mane Coffee sa may high blood? May maintenance ako.", 132, a({
+        intent: "medical_question", confidence: 0.97, purchaseIntent: "low", products: ["lions-mane-coffee"],
         leadScore: 38, nextAction: "suggest_consulting_professional", medicalFlag: true, escalate: true,
       })),
-      msg("assistant", "Thanks for asking. I can't give medical advice, and RG is a food supplement—not a medicine or a replacement for your maintenance medication. Please consult a qualified healthcare professional before taking any supplement with your medicine. I can share the product label details, and I've let the seller know you have a question.", 131),
+      msg("assistant", "Thanks for asking. I can't give medical advice, and Lion's Mane Coffee is a food/beverage product—not a medicine or a replacement for your maintenance medication. Please consult a qualified healthcare professional before using any new product with your medicine. I can share the product label details, and I've let the seller know you have a question.", 131),
       msg("system", "Health-related question detected. Conversation escalated to seller.", 131),
       msg("customer", "Okay, pa-send nalang ng label details.", 120),
     ],
@@ -127,17 +127,17 @@ export const conversations: Conversation[] = [
     aiMode: "draft_only",
     unread: 0,
     messages: [
-      msg("customer", "Available pa ba white coffee?", 1800, a({
-        intent: "availability_inquiry", confidence: 0.92, purchaseIntent: "medium", products: ["white-coffee-zhino"],
+      msg("customer", "Available pa ba classic 3-in-1?", 1800, a({
+        intent: "availability_inquiry", confidence: 0.92, purchaseIntent: "medium", products: ["lingzhi-coffee-3-in-1-classic"],
         leadScore: 60, nextAction: "ask_quantity",
       })),
-      msg("assistant", "Yes, White Coffee Zhino is available! How many boxes would you like? Many customers also add Ganozhi Soap to their order.", 1799),
+      msg("assistant", "Yes, Lingzhi Coffee 3-in-1 Classic is available! How many boxes would you like? Many customers also add Ganozhi Soap to their order.", 1799),
       msg("customer", "3 boxes, tapos 2 soap. Marikina ako.", 1700, a({
-        intent: "buy_product", confidence: 0.95, purchaseIntent: "high", products: ["white-coffee-zhino", "ganozhi-soap"],
+        intent: "buy_product", confidence: 0.95, purchaseIntent: "high", products: ["lingzhi-coffee-3-in-1-classic", "ganozhi-soap"],
         quantity: 3, location: "Marikina", leadScore: 84, nextAction: "create_order_inquiry",
       })),
-      msg("assistant", "Got it: 3 White Coffee Zhino and 2 Ganozhi Soap for delivery to Marikina. I've sent your order inquiry to the seller for confirmation.", 1699),
-      msg("seller", "Hi Bea! Julia here. Total is ₱2,430 + ₱80 delivery. GCash: 0917 000 0000 (J. Enrique). Please send a screenshot once paid. Salamat!", 1080),
+      msg("assistant", "Got it: 3 Lingzhi Coffee 3-in-1 Classic and 2 Ganozhi Soap for delivery to Marikina. I've sent your order inquiry to the seller for confirmation.", 1699),
+      msg("seller", "Hi Bea! Julia here. Total is ₱2,960 + ₱80 delivery. GCash: 0917 000 0000 (J. Enrique). Please send a screenshot once paid. Salamat!", 1080),
     ],
   }),
   conversation({
@@ -166,15 +166,15 @@ export const conversations: Conversation[] = [
     unread: 0,
     messages: [
       msg("customer", "hm cordyceps coffee", 1800, a({
-        intent: "price_inquiry", confidence: 0.89, purchaseIntent: "medium", products: ["cordyceps-coffee-3-in-1"],
+        intent: "price_inquiry", confidence: 0.89, purchaseIntent: "medium", products: ["cordyceps-coffee-4-in-1"],
         leadScore: 40, nextAction: "ask_quantity",
       })),
-      msg("assistant", "Cordyceps Coffee 3-in-1 has a reference price of ₱720 for a box of 20 sachets (about ₱36 per cup). Stock is limited right now. How many boxes are you thinking of?", 1799),
+      msg("assistant", "Cordyceps Coffee 4-in-1 has a reference price of ₱950 for a box of 20 sachets (about ₱48 per cup). Stock is limited right now. How many boxes are you thinking of?", 1799),
       msg("customer", "medyo mahal pala hehe", 1680, a({
-        intent: "price_inquiry", confidence: 0.7, purchaseIntent: "low", products: ["cordyceps-coffee-3-in-1"],
+        intent: "price_inquiry", confidence: 0.7, purchaseIntent: "low", products: ["cordyceps-coffee-4-in-1"],
         leadScore: 45, nextAction: "recommend_product", objections: ["Price concern"],
       })),
-      msg("assistant", "I understand! If you'd like a lower starting point, Lingzhi Coffee 3-in-1 is ₱650 per box and has a similar creamy taste. You can also start with just 1 box to try.", 1679),
+      msg("assistant", "I understand! If you'd like a lower starting point, the Lingzhi Coffee 3-in-1 Classic 10-sachet pack is only ₱450 and has a similar creamy taste. You can also start with just 1 pack to try.", 1679),
     ],
   }),
   conversation({
@@ -206,7 +206,7 @@ export const conversations: Conversation[] = [
     unread: 1,
     messages: [
       msg("customer", "Hi, 3 days na po wala pa yung order ko. Saan na kaya?", 62, a({
-        intent: "complaint", confidence: 0.9, purchaseIntent: "high", products: ["spirulina-cereal"],
+        intent: "complaint", confidence: 0.9, purchaseIntent: "high", products: ["cocozhi-cocoa-drink-10"],
         location: "Bulacan", leadScore: 88, nextAction: "escalate_to_seller", escalate: true,
         objections: ["Delivery delay"],
       })),

@@ -402,10 +402,10 @@ function detectPreference(text: string, products: Product[]) {
   if (/(not|hindi|di)\s*(too\s*)?(sweet|matamis)|(ayaw|hindi|di)\b.*\b(matamis|sweet)|less sweet|no sugar|walang asukal|plain|bold|black/.test(t)) {
     return pick("lingzhi-black-coffee");
   }
-  if (/milky|latte|mild|light coffee|gatas/.test(t)) return pick("white-coffee-zhino");
+  if (/milky|latte|mild|light coffee|gatas/.test(t)) return pick("lingzhi-coffee-3-in-1-classic");
   if (/kids|bata|chocolate|choco|no coffee|walang kape|cocoa/.test(t)) return pick("cocozhi-cocoa-drink");
-  if (/tea|evening|gabi|relax|tsaa/.test(t)) return pick("spica-tea");
-  if (/breakfast|almusal|cereal/.test(t)) return pick("spirulina-cereal");
+  if (/tea|lemon|evening|gabi|relax|tsaa/.test(t)) return pick("lemonzhi");
+  if (/breakfast|almusal|morning/.test(t)) return pick("cocozhi-cocoa-drink-10");
   if (/creamy|sweet|matamis|3.?in.?1/.test(t)) return pick("lingzhi-coffee-3-in-1");
   return undefined;
 }
@@ -438,9 +438,8 @@ export function composeReply(text: string, state: ChatSessionState, ctx: EngineC
 
   switch (analysis.nextAction) {
     case "suggest_consulting_professional": {
-      const isSupplement = product?.category === "supplements";
-      const productLine = product
-        ? ` ${product.name} is ${isSupplement ? "a food supplement" : "a food/consumer product"}, not a medicine, and it should not replace any treatment or medication.`
+            const productLine = product
+        ? ` ${product.name} is a food/consumer product, not a medicine, and it should not replace any treatment or medication.`
         : "";
       message = `Thanks for asking. I'm not able to give medical advice.${productLine} Please consult a qualified healthcare professional, especially if you have a condition or take maintenance medicine. I can share the approved label information${analysis.escalate ? ", and I've let the seller know you have a question" : ""}.`;
       attachments.push({ type: "medical_notice" });
@@ -510,7 +509,7 @@ export function composeReply(text: string, state: ChatSessionState, ctx: EngineC
         next.productSlug = pick.slug;
         suggestions = ["How do I prepare it?", "Is it available?", "I'd like to order"];
       } else if (/best ?seller|popular|patok|mabenta|favorite/i.test(text)) {
-        message = "Our customer favorites are Lingzhi Coffee 3-in-1, Lingzhi Black Coffee, White Coffee Zhino, and Cocozhi. Would you like me to help you pick one based on your taste?";
+        message = "Our customer favorites are Lingzhi Coffee 3-in-1, Lingzhi Black Coffee, Lingzhi Coffee 3-in-1 Classic, and Cocozhi. Would you like me to help you pick one based on your taste?";
         attachments.push(productCardsFor(ctx.products));
         suggestions = ["Not too sweet", "Creamy", "Milky", "No coffee please"];
       } else if (analysis.intent === "price_inquiry") {
@@ -521,7 +520,7 @@ export function composeReply(text: string, state: ChatSessionState, ctx: EngineC
         attachments.push(productCardsFor(ctx.products));
       } else {
         message = "Happy to help you choose! Do you prefer your coffee plain and bold, creamy and a bit sweet, or milky and mild? If you'd rather skip coffee, we also have cocoa and tea.";
-        attachments.push(productCardsFor(ctx.products, ["lingzhi-black-coffee", "lingzhi-coffee-3-in-1", "white-coffee-zhino", "cocozhi-cocoa-drink"]));
+        attachments.push(productCardsFor(ctx.products, ["lingzhi-black-coffee", "lingzhi-coffee-3-in-1", "lingzhi-coffee-3-in-1-classic", "cocozhi-cocoa-drink"]));
         suggestions = ["Not too sweet", "Creamy", "Milky", "No coffee please"];
       }
       break;
